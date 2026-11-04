@@ -45,6 +45,105 @@
     <!-- Strict 4 Cards per Row on PC for All Collections -->
     <style id="vimi-grid-critical">
 
+/* ==========================================================================
+   COLLECTION ARCHIVE PAGE & TOOLBAR STYLING
+   ========================================================================== */
+.section-main-collection {
+  padding: 40px 0 80px;
+  min-height: 80vh;
+  background-color: #000000;
+}
+
+.collection-hero-banner {
+  margin-bottom: 28px;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 24px;
+}
+
+.collection-page-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.collection-page-desc {
+  color: #888888;
+  font-size: 0.95rem;
+  max-width: 650px;
+  line-height: 1.55;
+}
+
+.collection-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 14px 18px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.collection-count {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #999999;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.collection-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.collection-sort label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sort-select {
+  background: #141414 !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 6px !important;
+  padding: 8px 34px 8px 14px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  outline: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.sort-select:hover,
+.sort-select:focus {
+  border-color: #555555 !important;
+  background-color: #1a1a1a !important;
+}
+
+.sort-select option {
+  background: #111111 !important;
+  color: #ffffff !important;
+  padding: 10px !important;
+}
+
+
     /* ==========================================================================
        1. COMPACT LUXURY CARD PROPORTIONS (ELIMINATES EXCESSIVE BOX LENGTH)
        ========================================================================== */
