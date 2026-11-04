@@ -132,25 +132,42 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroSlides.length) {
     scheduleNextSlide();
   }
-  // 1. Prev / Next Stage Arrows
-  const btnPrev = document.getElementById('HeroStagePrev');
-  const btnNext = document.getElementById('HeroStageNext');
-  if (btnPrev) {
-    btnPrev.addEventListener('click', (e) => {
+  // 1. Prev / Next Stage Arrows (Multi-bind & Touch-Optimized)
+  function handleHeroPrev(e) {
+    if (e) {
       e.preventDefault();
       e.stopPropagation();
-      setHeroSlide(currentSlide - 1);
-      scheduleNextSlide();
-    });
+    }
+    setHeroSlide(currentSlide - 1);
+    scheduleNextSlide();
   }
-  if (btnNext) {
-    btnNext.addEventListener('click', (e) => {
+
+  function handleHeroNext(e) {
+    if (e) {
       e.preventDefault();
       e.stopPropagation();
-      setHeroSlide(currentSlide + 1);
-      scheduleNextSlide();
-    });
+    }
+    setHeroSlide(currentSlide + 1);
+    scheduleNextSlide();
   }
+
+  const prevButtons = document.querySelectorAll('#HeroStagePrev, .hero-stage-arrow--prev');
+  prevButtons.forEach(btn => {
+    btn.addEventListener('click', handleHeroPrev);
+    btn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      handleHeroPrev(e);
+    });
+  });
+
+  const nextButtons = document.querySelectorAll('#HeroStageNext, .hero-stage-arrow--next');
+  nextButtons.forEach(btn => {
+    btn.addEventListener('click', handleHeroNext);
+    btn.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      handleHeroNext(e);
+    });
+  });
 
   // 2. Mobile Touch Swipe Gestures
   const stageEl = document.getElementById('HeroSliderStage');
