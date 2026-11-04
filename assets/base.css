@@ -344,35 +344,46 @@ img, svg {
 
 /* Mobile Nav Drawer */
 .mobile-nav-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  z-index: 9999999 !important;
   display: none;
 }
 
 .mobile-nav-drawer.is-open {
-  display: block;
+  display: block !important;
 }
 
 .mobile-nav-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  z-index: 9999998 !important;
 }
 
 .mobile-nav-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 82%;
-  max-width: 320px;
-  height: 100%;
-  background: #090909;
-  border-right: 1px solid #222;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 85% !important;
+  max-width: 320px !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  background: #000000 !important; /* 100% SOLID OPAQUE BLACK - ZERO HERO BLEEDTHROUGH */
+  border-right: 1px solid #1f1f1f !important;
+  padding: 24px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 9999999 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  box-shadow: 25px 0 60px rgba(0, 0, 0, 0.95) !important;
 }
 
 .mobile-nav-header {
@@ -1148,6 +1159,7 @@ img, svg {
 
 .product-card__media-wrapper {
   position: relative;
+  aspect-ratio: 1 / 1;
   background-color: #0c0c0c;
   overflow: hidden;
   border-radius: var(--radius-sm);
@@ -1228,8 +1240,10 @@ img, svg {
 /* Target image starts blurred and smoothly reveals */
 .product-card__image {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
   opacity: 0;
   filter: blur(14px) brightness(0.85);
