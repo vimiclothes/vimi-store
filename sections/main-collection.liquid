@@ -1,0 +1,44 @@
+<section class="section-main-collection">
+  <div class="container">
+    <div class="collection-hero-banner">
+      <h1 class="collection-page-title">{{ collection.title | default: "All Hoodies & Streetwear" }}</h1>
+      <p class="collection-page-desc">{{ collection.description | default: "Browse the complete VIMI heavyweight collection. Crafted with 450 GSM French Terry for ultimate street style." }}</p>
+    </div>
+
+    <div class="collection-toolbar">
+      <span class="collection-count">{{ collection.products_count | default: 8 }} Items</span>
+      <div class="collection-sort">
+        <label for="SortBy">Sort by:</label>
+        <select id="SortBy" class="sort-select">
+          <option value="featured">Featured Drop</option>
+          <option value="price-ascending">Price: Low to High</option>
+          <option value="price-descending">Price: High to Low</option>
+          <option value="created-descending">Newest Arrivals</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%;">
+      {%- if collection.products.size > 0 -%}
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback Demo Hoodies with Indian prices -->
+        {% render 'product-card', demo_title: 'VIMI "ARCHIVE" Heavyweight Oversized Hoodie', demo_price: 199900, demo_compare: 299900, demo_color: '#121212' %}
+        {% render 'product-card', demo_title: 'VIMI Acid Wash Vintage Grey Drop Hoodie', demo_price: 249900, demo_compare: 349900, demo_color: '#34383c' %}
+        {% render 'product-card', demo_title: 'VIMI Minimalist Puff-Print Boxy Hoodie', demo_price: 189900, demo_compare: 279900, demo_color: '#1a2e22' %}
+        {% render 'product-card', demo_title: 'VIMI Cyberpunk "TOKYO" Graphic Hoodie', demo_price: 229900, demo_compare: 329900, demo_color: '#1b263b' %}
+        {% render 'product-card', demo_title: 'VIMI Earth Tone Sand Dunes Heavy Hoodie', demo_price: 179900, demo_compare: 249900, demo_color: '#423425' %}
+        {% render 'product-card', demo_title: 'VIMI Raw-Hem Crimson Blood Oversized Drop', demo_price: 219900, demo_compare: 319900, demo_color: '#38161b' %}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": []
+}
+{% endschema %}

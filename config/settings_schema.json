@@ -1,0 +1,54 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "VIMI Streetwear",
+    "theme_version": "1.0.0",
+    "theme_author": "VIMI Studio",
+    "theme_documentation_url": "https://vimi.in/docs",
+    "theme_support_url": "https://vimi.in/support"
+  },
+  {
+    "name": "Colors & Aesthetics",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background Color",
+        "default": "#0b0b0b"
+      },
+      {
+        "type": "color",
+        "id": "color_card_bg",
+        "label": "Card Background",
+        "default": "#141414"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_text",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color (Highlight)",
+        "default": "#f59e0b"
+      }
+    ]
+  },
+  {
+    "name": "Brand & Social",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "instagram_url",
+        "label": "Instagram Profile URL"
+      }
+    ]
+  }
+]

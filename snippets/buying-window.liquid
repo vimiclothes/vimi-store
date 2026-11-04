@@ -1,0 +1,80 @@
+{%- comment -%}
+  ViMi Dedicated Quick Buying Window Modal
+{%- endcomment -%}
+
+<div id="BuyingWindowModal" class="buying-window-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Quick Buy Window">
+  <div class="buying-window-overlay" data-buying-window-close></div>
+  <div class="buying-window-container">
+    <button type="button" class="buying-window-close" data-buying-window-close aria-label="Close window">
+      {% render 'icon-close' %}
+    </button>
+
+    <div class="buying-window-body">
+      <!-- Left: Product Image -->
+      <div class="buying-window-media">
+        <div class="buying-window-badge" id="BuyingWindowBadge">BESTSELLER</div>
+        <img src="{{ 'vimi-hoodie-01.jpg' | asset_url }}" alt="ViMi Hoodie" id="BuyingWindowImage" class="buying-window-img" onload="vimiImgLoaded(this);" onerror="vimiImgLoaded(this);">
+      </div>
+
+      <!-- Right: Product Purchase Details -->
+      <div class="buying-window-info">
+        <div class="buying-window-brand">
+          <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="buying-window-logo">
+          <span>PREMIUM STREETWEAR  450 GSM</span>
+        </div>
+
+        <h2 class="buying-window-title" id="BuyingWindowTitle">ViMi Signature Drop-Shoulder Oversized Hoodie</h2>
+
+        <div class="buying-window-rating">
+          <div class="stars">★★★★★</div>
+          <span id="BuyingWindowReviews">4.9 (180+ verified reviews)</span>
+        </div>
+
+        <div class="buying-window-price-row">
+          <span class="buying-window-price" id="BuyingWindowPrice">₹1,999</span>
+          <span class="buying-window-compare" id="BuyingWindowCompare">₹2,999</span>
+          <span class="buying-window-discount" id="BuyingWindowDiscount">33% OFF</span>
+        </div>
+        <p class="buying-window-tax-note">Inclusive of all Indian taxes (GST)  Free Shipping > ₹999</p>
+
+        <!-- Size Selection -->
+        <div class="buying-window-option">
+          <div class="option-header">
+            <label class="option-label">Select Size (Oversized Boxy Silhouette):</label>
+            <span class="fit-guide-link" onclick="alert('ViMi Sizing Guide (Inches):\n\nS: Chest 42 | Length 27\nM: Chest 44 | Length 28\nL: Chest 46 | Length 29\nXL: Chest 48 | Length 30\nXXL: Chest 50 | Length 31\n\n*Tailored with natural drop shoulders for streetwear drape.');">📏 Size Chart</span>
+          </div>
+          <div class="buying-window-sizes" id="BuyingWindowSizes">
+            <button type="button" class="bw-size-btn" data-size="S">S</button>
+            <button type="button" class="bw-size-btn" data-size="M">M</button>
+            <button type="button" class="bw-size-btn active" data-size="L">L</button>
+            <button type="button" class="bw-size-btn" data-size="XL">XL</button>
+            <button type="button" class="bw-size-btn" data-size="XXL">XXL</button>
+          </div>
+        </div>
+
+        <!-- Quantity & Actions -->
+        <div class="buying-window-actions">
+          <div class="bw-qty-box">
+            <button type="button" class="bw-qty-btn" id="BwQtyMinus">−</button>
+            <input type="number" id="BwQtyInput" value="1" min="1" max="10" readonly>
+            <button type="button" class="bw-qty-btn" id="BwQtyPlus">+</button>
+          </div>
+          <button type="button" class="btn btn--primary bw-add-btn" id="BwAddBagBtn">
+            <span>ADD TO BAG</span>
+          </button>
+        </div>
+
+        <button type="button" class="btn btn--full bw-buy-now-btn" id="BwBuyNowBtn">
+          <span>⚡ INSTANT CHECKOUT (COD / UPI / CARDS)</span>
+        </button>
+
+        <!-- Trust Features -->
+        <div class="buying-window-perks">
+          <div class="bw-perk"><span>🚚</span> <span>Pan-India 2-4 Days Express Shipping</span></div>
+          <div class="bw-perk"><span>💵</span> <span>Cash on Delivery (COD) Available</span></div>
+          <div class="bw-perk"><span>🔄</span> <span>7-Day Hassle-Free Doorstep Exchange</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

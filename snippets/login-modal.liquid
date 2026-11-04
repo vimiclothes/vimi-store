@@ -1,0 +1,82 @@
+{%- comment -%}
+  ViMi Customer Account & Login Modal
+{%- endcomment -%}
+
+<div id="LoginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Customer Login">
+  <div class="login-modal-overlay" data-login-close></div>
+  <div class="login-modal-dialog">
+    <button type="button" class="login-modal-close" data-login-close aria-label="Close login">
+      {% render 'icon-close' %}
+    </button>
+
+    <div class="login-modal-content">
+      <div class="login-header text-center">
+        <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="login-brand-logo">
+        <h3 class="login-title">THE ViMi SYNDICATE</h3>
+        <p class="login-subtitle">Sign in for member-only drops, order tracking & fast checkout.</p>
+      </div>
+
+      <!-- Tabs: Sign In / Create Account -->
+      <div class="login-tabs">
+        <button type="button" class="login-tab-btn active" id="TabSignIn">SIGN IN</button>
+        <button type="button" class="login-tab-btn" id="TabRegister">CREATE ACCOUNT</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <form class="login-form" id="FormSignIn" onsubmit="event.preventDefault(); window.handleLoginSuccess('Welcome back to ViMi Syndicate!');">
+        <div class="form-group">
+          <label>Email or Mobile (+91)</label>
+          <input type="text" placeholder="e.g. prakhar@example.com or 9876543210" required class="form-input" id="LoginIdentifier">
+        </div>
+        <div class="form-group">
+          <div class="form-group-flex">
+            <label>Password</label>
+            <a href="#" class="forgot-link" onclick="alert('Password reset link sent to your email/phone.');">Forgot?</a>
+          </div>
+          <input type="password" placeholder="••••••••" required class="form-input" id="LoginPassword">
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full login-submit-btn">
+          <span>SIGN IN TO ViMi</span>
+        </button>
+
+        <div class="otp-login-divider">
+          <span>OR SIGN IN WITH</span>
+        </div>
+
+        <button type="button" class="btn btn--secondary btn--full otp-btn" onclick="window.handleLoginSuccess('OTP sent to your mobile phone via SMS!');">
+          <span>📱 One-Time Password (OTP via SMS)</span>
+        </button>
+      </form>
+
+      <!-- Register Form (Hidden by default) -->
+      <form class="login-form" id="FormRegister" style="display: none;" onsubmit="event.preventDefault(); window.handleLoginSuccess('Account created! Welcome to ViMi Syndicate with ₹200 welcome voucher code FIRST200.');">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="e.g. Prakhar Sharma" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Mobile Number (+91)</label>
+          <input type="tel" placeholder="10-digit mobile number" required class="form-input" maxlength="10">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="name@domain.com" required class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Create Password</label>
+          <input type="password" placeholder="At least 6 characters" required class="form-input">
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full login-submit-btn">
+          <span>JOIN ViMi SYNDICATE</span>
+        </button>
+      </form>
+
+      <div class="login-perks-box">
+        <p>✓ Exclusive access to secret 450 GSM hoodie drops</p>
+        <p>✓ Faster 1-click checkout with saved addresses</p>
+      </div>
+    </div>
+  </div>
+</div>

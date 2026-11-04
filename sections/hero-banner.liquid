@@ -1,0 +1,297 @@
+<section class="hero-section vimi-desktop-hero" id="hero-banner">
+      <div class="hero-bg-watermark">ARCHIVE 450</div>
+  <div class="container hero-container">
+    
+    <!-- Hero Left: Typography & Brand Value -->
+    <div class="hero-content">
+      <div class="hero-badge-row">
+        <div class="hero-tag-badge">
+          <span class="badge-dot"></span>
+          <span>DROP 01 • GRAIL STATUS</span>
+        </div>
+        <span class="crazzzy-pill">⚡ CRAZZZY HEAVYWEIIIGHT</span>
+      </div>
+
+      <h1 class="hero-title">
+        CRAZZZY SILENT LUXURY.<br>
+        450 GSM HEAVYWEIIIGHT.<br>
+        <span class="text-gradient">ENGINEERED IN INDIA.</span>
+      </h1>
+
+      <p class="hero-description">
+        {{ section.settings.description | default: "Defying fast fashion through architectural drop-shoulder cuts, zero-shrink loopback French Terry, and pure monochromatic dominance. Dedicated solely to the ultimate hoodie." }}
+      </p>
+
+      <div class="hero-features-chips">
+        <span class="chip">🇮🇳 Made in India</span>
+        <span class="chip">🧶 450 GSM Terry</span>
+        <span class="chip">📦 Cash on Delivery</span>
+        <span class="chip">🔥 Boxy AF</span>
+        <span class="chip">⚡ Drops from ₹1,699</span>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#featured-hoodies" class="btn btn--primary">
+          <span>EXPLORE ARCHIVE DROP</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <button 
+          type="button" 
+          class="btn btn--outline"
+          id="HeroQuickBuyBtn"
+          onclick="document.getElementById('HeroSlideQuickBuy').click();"
+        >
+          <span>s QUICK BUY THIS LOOK</span>
+        </button>
+      </div>
+
+      <div class="hero-social-proof">
+        <div class="proof-avatars">
+          <div class="avatar-circle">V</div>
+          <div class="avatar-circle">I</div>
+          <div class="avatar-circle">M</div>
+          <div class="avatar-circle">I</div>
+        </div>
+        <div class="proof-text">
+          <strong>4.9 / 5 Rating  Certified Streetwear</strong>
+          <span>Loved by 10,000+ hoodie collectors across India</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Right: Dynamic Auto-Cycling Showcase Card -->
+    <div class="hero-visual">
+      <div class="hero-card-showcase" id="HeroShowcase">
+        
+        <div class="showcase-badge-row">
+          <span class="showcase-badge" id="HeroBadgeText">FLAGSHIP #01</span>
+          <div class="showcase-live-pill">
+            <span class="live-dot"></span>
+            <span>LIVE DROP</span>
+          </div>
+        </div>
+
+        <!-- Auto-cycling Slides Stage -->
+        <div class="hero-slider-stage" id="HeroSliderStage">
+          <!-- Slide 1: ViMi HEAVYWEIIIGHT Essential -->
+          <div class="hero-slide active" data-index="0" data-title='ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie' data-price="1999" data-compare="2999" data-badge="SIGNATURE DROP #01" data-image="vimi-hoodie-21.jpg">
+            <img src="{{ 'vimi-hoodie-21.jpg' | asset_url }}" alt='ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie' class="hero-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-21.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-21.jpg';">
+          </div>
+          <!-- Slide 2: Vintage Heather -->
+          <div class="hero-slide" data-index="1" data-title='ViMi "CRAZZZY ARCHIVE" Vintage Heather Boxy Hoodie' data-price="2199" data-compare="3199" data-badge="VINTAGE GRAIL" data-image="vimi-hoodie-02.jpg">
+            <img src="{{ 'vimi-hoodie-02.jpg' | asset_url }}" alt="ViMi Archive" class="hero-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-02.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-02.jpg';">
+          </div>
+          <!-- Slide 3: Nocturne Acid Wash -->
+          <div class="hero-slide" data-index="2" data-title='ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie' data-price="2399" data-compare="3499" data-badge="ACID WASH" data-image="vimi-hoodie-03.jpg">
+            <img src="{{ 'vimi-hoodie-03.jpg' | asset_url }}" alt="ViMi Nocturne" class="hero-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-03.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-03.jpg';">
+          </div>
+          <!-- Slide 4: Phantom Black -->
+          <div class="hero-slide" data-index="3" data-title='ViMi "GRAIL DRIP" Phantom Black 450 GSM Hoodie' data-price="1999" data-compare="2999" data-badge="BESTSELLER" data-image="vimi-hoodie-04.jpg">
+            <img src="{{ 'vimi-hoodie-04.jpg' | asset_url }}" alt="ViMi Grail Drip" class="hero-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-04.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-04.jpg';">
+          </div>
+          <!-- Slide 5: Japanese Kanji Cyber -->
+          <div class="hero-slide" data-index="4" data-title='ViMi "CYBER DRIFT" Japanese Kanji Graphic Hoodie' data-price="2699" data-compare="3899" data-badge="CYBER DRIP" data-image="vimi-hoodie-06.jpg">
+            <img src="{{ 'vimi-hoodie-06.jpg' | asset_url }}" alt="ViMi Cyber Drift" class="hero-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-06.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-06.jpg';">
+            <!-- Stage Arrow Controls -->
+          <button type="button" class="hero-stage-arrow hero-stage-arrow--prev" id="HeroStagePrev" aria-label="Previous hoodie">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="hero-stage-arrow hero-stage-arrow--next" id="HeroStageNext" aria-label="Next hoodie">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+          <!-- Stage Arrow Controls -->
+          <button type="button" class="hero-stage-arrow hero-stage-arrow--prev" id="HeroStagePrev" aria-label="Previous hoodie">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="hero-stage-arrow hero-stage-arrow--next" id="HeroStageNext" aria-label="Next hoodie">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <!-- Navigation Dots & Counter -->
+        <div class="hero-slider-nav">
+          <div class="hero-slider-dots">
+            <button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"><span class="hero-dot-fill"></span></button>
+            <button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"><span class="hero-dot-fill"></span></button>
+            <button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"><span class="hero-dot-fill"></span></button>
+            <button type="button" class="hero-dot" data-slide="3" aria-label="Slide 4"><span class="hero-dot-fill"></span></button>
+            <button type="button" class="hero-dot" data-slide="4" aria-label="Slide 5"><span class="hero-dot-fill"></span></button>
+          </div>
+          <div class="hero-slider-counter" id="HeroSliderCounter">01 / 05</div>
+        </div>
+
+        <!-- Dynamic Product Details for Active Slide -->
+        <div class="showcase-details">
+          <div class="showcase-row">
+            <div>
+              <h4 class="showcase-name" id="HeroTitle">ViMi "SKELETON SPINE" Rhinestone Graphic Heavyweight Hoodie</h4>
+              <p class="showcase-sub" id="HeroSub">450 GSM French Terry  Pre-Shrunk Bio-Washed</p>
+            </div>
+            <div class="showcase-price-box">
+              <span class="showcase-curr" id="HeroPrice">₹2,499</span>
+              <span class="showcase-orig" id="HeroCompare">₹3,699</span>
+            </div>
+          </div>
+
+          <div class="showcase-actions-grid">
+            <button 
+              type="button" 
+              class="btn btn--primary open-buying-window"
+              id="HeroSlideQuickBuy"
+              data-product-title='ViMi "SKELETON SPINE" Rhinestone Graphic Heavyweight Hoodie'
+              data-product-price="2499"
+              data-product-compare="3699"
+              data-product-badge="CRAZZZY GRAIL"
+              data-product-image="vimi-hoodie-01.jpg"
+            >
+              ⚡ Quick Buy Window
+            </button>
+
+            <button 
+              type="button" 
+              class="btn btn--secondary btn-quick-add"
+              id="HeroSlideAddBag"
+              data-product-title='ViMi "SKELETON SPINE" Rhinestone Graphic Heavyweight Hoodie'
+              data-product-price="2499"
+              data-product-image="vimi-hoodie-01.jpg"
+            >
+              + Add to Bag
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================================================
+     ViMi MOBILE HERO  (phones only, max-width: 767px)
+     PC layout is untouched: this block is display:none on desktop.
+     ========================================================= -->
+<section class="vimi-m-hero" id="vimiMobileHero">
+  <div class="m-marquee"><div>
+    <span>450 GSM Heavyweight French Terry</span><span>Cash on Delivery</span><span>7-Day Doorstep Exchange</span><span>Made in India</span>
+    <span>450 GSM Heavyweight French Terry</span><span>Cash on Delivery</span><span>7-Day Doorstep Exchange</span><span>Made in India</span>
+  </div></div>
+
+  <div class="m-pills">
+    <span class="m-pill">Drop 01 • Grail Status</span>
+    <span class="m-pill hot">⚡ Heavyweight</span>
+  </div>
+
+  <h1 class="m-h1"><em>Crazzzy</em> silent luxury.<br>450 GSM.<br>Engineered in India.</h1>
+  <p class="m-sub">Drop-shoulder cuts, zero-shrink French Terry and pure monochrome dominance. Only hoodies.</p>
+
+  <div class="m-chips">
+    <span class="m-chip">🇮🇳 Made in India</span>
+    <span class="m-chip">450 GSM Terry</span>
+    <span class="m-chip">Cash on Delivery</span>
+    <span class="m-chip">Boxy Fit</span>
+    <span class="m-chip">From ₹1,699</span>
+  </div>
+
+  <div class="m-card">
+    <div class="m-tag">SIGNATURE DROP #01</div>
+    <div class="m-badge">01</div>
+        <div class="m-slides" id="mSlides">
+      <div class="m-slide" style="background-image: url('{{ 'vimi-hoodie-21.jpg' | asset_url }}');" data-title='ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie' data-meta="Obsidian Black • 450 GSM • Boxy Cut" data-price="₹1,999" data-compare="₹2,999" data-img="vimi-hoodie-21.jpg" data-raw-price="1999" data-raw-compare="2999">
+        <img src="{{ 'vimi-hoodie-21.jpg' | asset_url }}" alt='ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie' class="m-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-21.jpg'; if(!this.complete) this.src='./assets/vimi-hoodie-21.jpg';">
+      </div>
+      <div class="m-slide" style="background-image: url('{{ 'vimi-hoodie-02.jpg' | asset_url }}');" data-title='ViMi "CRAZZZY ARCHIVE" Vintage Heather Boxy Hoodie' data-meta="Vintage Heather • 450 GSM • Boxy AF" data-price="₹2,199" data-compare="₹3,199" data-img="vimi-hoodie-02.jpg" data-raw-price="2199" data-raw-compare="3199">
+        <img src="{{ 'vimi-hoodie-02.jpg' | asset_url }}" alt='ViMi "CRAZZZY ARCHIVE" Vintage Heather Boxy Hoodie' class="m-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-02.jpg'; if(!this.complete) this.src='./assets/vimi-hoodie-02.jpg';">
+      </div>
+      <div class="m-slide" style="background-image: url('{{ 'vimi-hoodie-03.jpg' | asset_url }}');" data-title='ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie' data-meta="Acid Washed Charcoal • 450 GSM • Distressed" data-price="₹2,399" data-compare="₹3,499" data-img="vimi-hoodie-03.jpg" data-raw-price="2399" data-raw-compare="3499">
+        <img src="{{ 'vimi-hoodie-03.jpg' | asset_url }}" alt='ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie' class="m-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-03.jpg'; if(!this.complete) this.src='./assets/vimi-hoodie-03.jpg';">
+      </div>
+      <div class="m-slide" style="background-image: url('{{ 'vimi-hoodie-04.jpg' | asset_url }}');" data-title='ViMi "GRAIL DRIP" Phantom Black 450 GSM Hoodie' data-meta="Phantom Black • 450 GSM Terry • Deep Hood" data-price="₹1,999" data-compare="₹2,999" data-img="vimi-hoodie-04.jpg" data-raw-price="1999" data-raw-compare="2999">
+        <img src="{{ 'vimi-hoodie-04.jpg' | asset_url }}" alt='ViMi "GRAIL DRIP" Phantom Black 450 GSM Hoodie' class="m-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-04.jpg'; if(!this.complete) this.src='./assets/vimi-hoodie-04.jpg';">
+      </div>
+      <div class="m-slide" style="background-image: url('{{ 'vimi-hoodie-06.jpg' | asset_url }}');" data-title='ViMi "CYBER DRIFT" Japanese Kanji Graphic Hoodie' data-meta="Cyber Graphic • 450 GSM • Boxy Drop" data-price="₹2,699" data-compare="₹3,899" data-img="vimi-hoodie-06.jpg" data-raw-price="2699" data-raw-compare="3899">
+        <img src="{{ 'vimi-hoodie-06.jpg' | asset_url }}" alt='ViMi "CYBER DRIFT" Japanese Kanji Graphic Hoodie' class="m-slide-img" onload="vimiImgLoaded(this);" onerror="this.src='./assets/hoodies/vimi-hoodie-06.jpg'; if(!this.complete) this.src='./assets/vimi-hoodie-06.jpg';">
+      </div>
+    </div>
+    <div class="m-dots" id="mDots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    <div class="m-info">
+      <div>
+        <div class="m-name" id="mName">ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie</div>
+        <div class="m-meta" id="mMeta">Obsidian Black • 450 GSM • Boxy Cut</div>
+      </div>
+      <div class="m-price" id="mPrice">₹1,999<s>₹2,999</s></div>
+    </div>
+      <div class="m-price" id="mPrice">₹2,399<s>₹3,499</s></div>
+    </div>
+  </div>
+
+  <div class="m-rating"><span>★★★★★</span><span><b>4.9/5</b> · Loved by 10,000+ collectors</span></div>
+
+  <!-- Sticky bottom bar -->
+  <div class="m-cta">
+    <button type="button" class="m-btn btn-quick-add" id="MobileHeroAddBag" data-product-title='ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie' data-product-price="2399" data-product-image="vimi-hoodie-03.jpg">+ Add to Bag</button>
+    <button type="button" class="m-btn primary open-buying-window" id="MobileHeroQuickBuy" data-product-title='ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie' data-product-price="2399" data-product-compare="3499" data-product-badge="SIGNATURE DROP #01" data-product-image="vimi-hoodie-03.jpg">⚡ Quick Buy</button>
+  </div>
+</section>
+
+<script>
+// sync dots with swipe position
+(function(){
+  var s=document.getElementById('mSlides'), d=document.querySelectorAll('#mDots i');
+  var nameEl=document.getElementById('mName'), metaEl=document.getElementById('mMeta'), priceEl=document.getElementById('mPrice');
+  var buyBtn=document.getElementById('MobileHeroQuickBuy'), addBtn=document.getElementById('MobileHeroAddBag');
+  if(!s) return;
+  s.addEventListener('scroll',function(){
+    var i=Math.round(s.scrollLeft/s.clientWidth);
+    d.forEach(function(x,k){x.classList.toggle('on',k===i)});
+    var slides = s.querySelectorAll('.m-slide');
+    if(slides[i]){
+      var sl = slides[i];
+      if(nameEl) nameEl.textContent = sl.dataset.title;
+      if(metaEl) metaEl.textContent = sl.dataset.meta;
+      if(priceEl) priceEl.innerHTML = sl.dataset.price + '<s>' + sl.dataset.compare + '</s>';
+      if(buyBtn) {
+        buyBtn.dataset.productTitle = sl.dataset.title;
+        buyBtn.dataset.productPrice = sl.dataset.rawPrice;
+        buyBtn.dataset.productCompare = sl.dataset.rawCompare;
+        buyBtn.dataset.productImage = sl.dataset.img;
+      }
+      if(addBtn) {
+        addBtn.dataset.productTitle = sl.dataset.title;
+        addBtn.dataset.productPrice = sl.dataset.rawPrice;
+        addBtn.dataset.productImage = sl.dataset.img;
+      }
+    }
+  },{passive:true});
+})();
+</script>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "CRAZZZY SILENT LUXURY. 450 GSM HEAVYWEIIIGHT."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Defying fast fashion through architectural drop-shoulder cuts, zero-shrink loopback French Terry, and pure monochromatic dominance. Dedicated solely to the ultimate hoodie."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

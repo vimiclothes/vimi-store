@@ -1,0 +1,130 @@
+{%- comment -%}
+  ViMi Luxury Monochrome Product Card with Buying Window & Quick Add support
+{%- endcomment -%}
+
+{%- liquid
+  assign is_real = false
+  if product and product.title != blank
+    assign is_real = true
+    assign card_title = product.title
+    assign card_url = product.url
+    assign card_image = product.featured_image
+    assign card_price = product.price
+    assign card_compare = product.compare_at_price
+    assign card_badge = 'OVERSIZED'
+    if product.compare_at_price > product.price
+      assign card_badge = 'SALE'
+    endif
+  else
+    assign card_title = demo_title | default: 'ViMi Signature Heavyweight Drop Hoodie'
+    assign card_url = '#buying-window'
+    assign card_price = demo_price | default: 199900
+    assign card_compare = demo_compare | default: 299900
+    assign card_badge = demo_badge | default: 'BESTSELLER'
+    assign demo_img = demo_image | default: 'vimi-hoodie-01.jpg'
+  endif
+-%}
+
+<div class="product-card" data-product-id="{{ product.id | default: demo_id | default: 'demo' }}">
+  <div class="product-card__media-wrapper">
+    {%- if card_badge != blank -%}
+      <span class="product-card__badge">{{ card_badge }}</span>
+    {%- endif -%}
+
+    <a 
+      href="{{ card_url }}" 
+      class="product-card__link open-buying-window"
+      data-product-title="{{ card_title | escape }}"
+      data-product-price="{{ card_price }}"
+      data-product-compare="{{ card_compare }}"
+      data-product-badge="{{ card_badge }}"
+      data-product-image="{{ demo_img }}"
+    >
+      {%- if is_real and card_image -%}
+        <img
+          src="{{ card_image | image_url: width: 700 }}"
+          alt="{{ card_image.alt | default: card_title | escape }}"
+          loading="lazy"
+          class="product-card__image"
+          onload="vimiImgLoaded(this);"
+          onerror="vimiImgLoaded(this);"
+          width="700"
+          height="875"
+        >
+      {%- else -%}
+        <img
+          src="{{ demo_img | asset_url }}"
+          alt="{{ card_title | escape }}"
+          loading="lazy"
+          class="product-card__image"
+          onload="vimiImgLoaded(this);"
+          onerror="this.src='./assets/hoodies/{{ demo_img }}'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/{{ demo_img }}'; vimiImgLoaded(this);"
+          width="700"
+          height="875"
+        >
+      {%- endif -%}
+    </a>
+
+    <!-- Quick action buttons overlay -->
+    <div class="product-card__actions">
+      <button 
+        type="button" 
+        class="btn-quick-buy open-buying-window"
+        data-product-title="{{ card_title | escape }}"
+        data-product-price="{{ card_price }}"
+        data-product-compare="{{ card_compare }}"
+        data-product-badge="{{ card_badge }}"
+        data-product-image="{{ demo_img }}"
+      >
+        <span>⚡ Quick Buy</span>
+      </button>
+
+      <button 
+        type="button" 
+        class="btn-quick-add" 
+        data-product-title="{{ card_title | escape }}" 
+        data-product-price="{{ card_price }}"
+        data-product-image="{{ demo_img }}"
+        data-product-id="{{ product.id | default: demo_id | default: 'demo' }}"
+      >
+        <span>+ Add to Bag</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="product-card__info">
+    <div class="product-card__meta">
+      <div class="product-card__rating">
+        {% render 'icon-star' %}
+        <span>4.9 (120+ reviews)</span>
+      </div>
+      <span class="product-card__fit-tag">450 GSM Oversized</span>
+    </div>
+
+    <h3 class="product-card__title">
+      <a 
+        href="{{ card_url }}" 
+        class="open-buying-window"
+        data-product-title="{{ card_title | escape }}"
+        data-product-price="{{ card_price }}"
+        data-product-compare="{{ card_compare }}"
+        data-product-badge="{{ card_badge }}"
+        data-product-image="{{ demo_img }}"
+      >
+        {{ card_title }}
+      </a>
+    </h3>
+
+    <div class="product-card__sizes">
+      <span class="size-pill">S</span>
+      <span class="size-pill">M</span>
+      <span class="size-pill active">L</span>
+      <span class="size-pill">XL</span>
+      <span class="size-pill">XXL</span>
+    </div>
+
+    <div class="product-card__bottom">
+      {% render 'price', product: product, price: card_price, compare_at_price: card_compare %}
+    </div>
+  </div>
+</div>

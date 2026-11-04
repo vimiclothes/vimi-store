@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "SILENT LUXURY. 450 GSM HEAVYWEIGHT.",
+        "description": "Defying fast fashion through architectural drop-shoulder cuts, dense French Terry cotton, and pure monochromatic dominance."
+      }
+    },
+    "countdown": {
+      "type": "countdown-ticker",
+      "settings": {}
+    },
+    "features": {
+      "type": "features-banner",
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "HOODIE ARCHIVE 2026",
+        "subtitle": "Engineered boxy drop-shoulder fits. Built with 450 GSM luxury French Terry cotton for supreme comfort.",
+        "products_to_show": 16
+      }
+    },
+    "anatomy": {
+      "type": "hoodie-anatomy",
+      "settings": {}
+    },
+    "fit_finder": {
+      "type": "fit-calculator",
+      "settings": {}
+    },
+    "fabric_matrix": {
+      "type": "fabric-matrix",
+      "settings": {}
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "countdown",
+    "features",
+    "featured_collection",
+    "anatomy",
+    "fit_finder",
+    "fabric_matrix",
+    "brand_story"
+  ]
+}

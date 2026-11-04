@@ -1,0 +1,507 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <script>
+      window.vimiImgLoaded = function(img) {
+        if (!img) return;
+        img.classList.add('vimi-loaded');
+        var wrapper = img.closest ? img.closest('.product-card__media-wrapper, .m-slide, .hero-slide, .buying-window-media') : null;
+        if (wrapper) wrapper.classList.add('vimi-shimmer-off');
+      };
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'vimi-logo.png' | asset_url }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    <!-- Theme Base Stylesheet (Monochrome Luxury) -->
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <!-- Strict 4 Cards per Row on PC for All Collections -->
+    <style id="vimi-grid-critical">
+      .products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 20px !important;
+        width: 100% !important;
+      }
+      @media (min-width: 769px) {
+        .products-grid {
+          display: grid !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: 20px !important;
+          width: 100% !important;
+        }
+      }
+      @media (max-width: 768px) {
+        .products-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 12px !important;
+          width: 100% !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .products-grid {
+          display: grid !important;
+          grid-template-columns: repeat(2, 1fr) !important;
+          gap: 8px !important;
+          width: 100% !important;
+        }
+      }
+    
+    /* MOBILE HERO: VISUAL-FIRST CINEMATIC ZOOMING & SLIDING (ZERO PRICES, BOLD MINIMAL TEXT) */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 24px 0 32px !important;
+      }
+      .hero-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 16px !important;
+        padding: 0 14px !important;
+      }
+      .hero-content {
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 0 !important;
+      }
+      .hero-badge-row {
+        justify-content: center !important;
+        margin-bottom: 8px !important;
+        gap: 6px !important;
+      }
+      .hero-title {
+        font-size: 2.15rem !important;
+        line-height: 1.08 !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.03em !important;
+        margin-bottom: 0 !important;
+      }
+      /* HIDE text clutter on phone users */
+      .hero-description,
+      .hero-features-chips,
+      .hero-social-proof,
+      .hero-cta-group {
+        display: none !important;
+      }
+      /* Phone Visual Showcase */
+      .hero-visual {
+        width: 100% !important;
+        max-width: 440px !important;
+        margin: 0 auto !important;
+      }
+      .hero-card-showcase {
+        background: #090909 !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+        border-radius: 18px !important;
+        padding: 12px 12px 16px !important;
+        box-shadow: 0 16px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.05) !important;
+      }
+      .hero-slider-stage {
+        aspect-ratio: 4 / 4.8 !important;
+        border-radius: 14px !important;
+        margin-bottom: 12px !important;
+      }
+      .showcase-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 12px !important;
+        gap: 4px !important;
+      }
+      .showcase-name {
+        font-size: 1.02rem !important;
+        font-weight: 800 !important;
+        text-align: center !important;
+        line-height: 1.25 !important;
+      }
+      .showcase-sub {
+        font-size: 0.74rem !important;
+        text-align: center !important;
+        color: #a1a1aa !important;
+      }
+      /* STRICTLY ZERO PRICES FOR PHONE USERS */
+      .showcase-price-box {
+        display: none !important;
+      }
+      .showcase-actions-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .showcase-actions-grid .btn-quick-add {
+        display: none !important;
+      }
+      .showcase-actions-grid .btn {
+        width: 100% !important;
+        padding: 13px 16px !important;
+        font-size: 0.84rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        justify-content: center !important;
+      }
+    }
+</style>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.VimiShop = {
+        currency: '{{ cart.currency.symbol | default: "₹" }}',
+        currencyCode: '{{ cart.currency.iso_code | default: "INR" }}',
+        moneyFormat: '₹{{amount}}'
+      };
+    </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+
+/* =========================================================
+   ViMi MOBILE HERO (phones only, max-width: 767px)
+   PC layout is untouched: this block is display:none on desktop.
+   ========================================================= */
+:root {
+  --bg: #050505;
+  --card: #0e0e0e;
+  --line: #1f1f1f;
+  --text: #fff;
+  --muted: #9a9a9a;
+  --accent: #ff4d1a; /* the orange "01" badge colour */
+}
+
+/* ---- show ONLY on phones ---- */
+.vimi-m-hero {
+  display: none;
+}
+@media (max-width: 767px) {
+  .vimi-desktop-hero {
+    display: none !important;
+  }
+  .vimi-m-hero {
+    display: block !important;
+    position: relative;
+    padding: 20px 16px 110px;
+    overflow: hidden;
+    background: radial-gradient(120% 60% at 50% 0%, #1a1a1a 0%, var(--bg) 60%);
+  }
+}
+
+/* top marquee */
+.m-marquee {
+  margin: -20px -16px 18px;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: .14em;
+  font-weight: 700;
+  color: #cfcfcf;
+  text-transform: uppercase;
+}
+.m-marquee div {
+  display: inline-block;
+  padding: 9px 0;
+  animation: mq 22s linear infinite;
+}
+.m-marquee span {
+  margin: 0 18px;
+}
+@keyframes mq {
+  to { transform: translateX(-50%); }
+}
+
+/* pills */
+.m-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.m-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 7px 11px;
+  border-radius: 99px;
+  border: 1px solid #2a2a2a;
+  background: #111;
+  color: #fff;
+}
+.m-pill.hot {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* headline */
+.m-h1 {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -.02em;
+  font-size: clamp(34px, 10.5vw, 46px);
+  text-shadow: 0 0 28px rgba(255, 255, 255, .18);
+  margin-bottom: 6px;
+  color: #fff;
+}
+.m-h1 em {
+  font-family: 'Playfair Display', serif;
+  font-style: normal;
+  color: #d8d8d8;
+}
+.m-sub {
+  margin: 14px 0 18px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+/* chips: swipe sideways, never wrap into a messy block */
+.m-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 0 -16px 20px;
+  padding: 0 16px;
+  scrollbar-width: none;
+}
+.m-chips::-webkit-scrollbar {
+  display: none;
+}
+.m-chip {
+  flex: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0b0b0b;
+  color: #ddd;
+}
+
+/* product card with swipe carousel */
+.m-card {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+}
+.m-tag {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  z-index: 3;
+  background: #fff;
+  color: #000;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  padding: 6px 10px;
+  transform: rotate(-3deg);
+}
+.m-badge {
+  position: absolute;
+  top: -16px;
+  right: -6px;
+  z-index: 3;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ff7a45, var(--accent) 60%, #b52a00);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(255, 77, 26, .55);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% { box-shadow: 0 0 44px rgba(255, 77, 26, .85); }
+}
+.m-slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 14px;
+  scrollbar-width: none;
+}
+.m-slides::-webkit-scrollbar {
+  display: none;
+}
+.m-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  aspect-ratio: 4/5;
+  background-color: #1b1b1b;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.m-slide:nth-child(1) { background-image: url('./assets/hoodies/vimi-hoodie-03.jpg'); }
+.m-slide:nth-child(2) { background-image: url('./assets/hoodies/vimi-hoodie-01.jpg'); }
+.m-slide:nth-child(3) { background-image: url('./assets/hoodies/vimi-hoodie-02.jpg'); }
+
+.m-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0 12px;
+}
+.m-dots i {
+  width: 18px;
+  height: 3px;
+  border-radius: 3px;
+  background: #333;
+  transition: .25s;
+}
+.m-dots i.on {
+  width: 34px;
+  background: #fff;
+}
+.m-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0 4px 4px;
+}
+.m-name {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #fff;
+}
+.m-meta {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.m-price {
+  text-align: right;
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  white-space: nowrap;
+}
+.m-price s {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* rating row */
+.m-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.m-rating b {
+  color: #fff;
+}
+
+/* STICKY thumb-zone CTA bar (the biggest mobile conversion win) */
+.m-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(5, 5, 5, .88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+}
+.m-btn {
+  flex: 1;
+  height: 52px;
+  border-radius: 12px;
+  font: 800 12px 'Archivo', system-ui, sans-serif;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.m-btn.primary {
+  flex: 1.4;
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+.m-btn:active {
+  transform: scale(.97);
+}
+@media (min-width: 768px) {
+  .m-cta {
+    display: none !important;
+  }
+}
+
+</style>
+</head>
+
+  <body class="vimi-store template-{{ template.name | handle }}">
+    <a class="skip-to-content-link visually-hidden" href="#MainContent">Skip to content</a>
+
+    {% sections 'header-group' %}
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    <!-- Reusable Luxury Modals & Drawers -->
+    {% render 'cart-drawer' %}
+    {% render 'buying-window' %}
+    {% render 'login-modal' %}
+
+    <!-- Theme Scripts -->
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>

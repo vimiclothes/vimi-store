@@ -1,0 +1,107 @@
+<header class="site-header" id="SiteHeader">
+  <div class="header-container container">
+    
+    <!-- Mobile Hamburger Toggle -->
+    <button type="button" class="header__icon-btn mobile-menu-toggle" aria-label="Toggle menu" id="MobileMenuBtn">
+      {% render 'icon-menu' %}
+    </button>
+
+    <!-- Brand Logo (Featuring user's official ViMi bird-wing logo) -->
+    <div class="header__logo-wrapper">
+      <a href="{{ routes.root_url }}" class="header__logo">
+        <img 
+          src="{{ 'vimi-logo.png' | asset_url }}" 
+          alt="ViMi Official" 
+          class="header-brand-logo-img"
+          onerror="this.src='./assets/vimi-logo.png';"
+          width="130" 
+          height="46"
+        >
+      </a>
+    </div>
+
+    <!-- Navigation Menu (Desktop) -->
+    <nav class="header__nav" aria-label="Main Navigation">
+      <ul class="header__menu-list">
+        {%- if section.settings.menu != blank and linklists[section.settings.menu].links.size > 0 -%}
+          {%- for link in linklists[section.settings.menu].links -%}
+            <li class="menu-item {% if link.active %}active{% endif %}">
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          <li class="menu-item active"><a href="{{ routes.root_url }}">Home</a></li>
+          <li class="menu-item"><a href="#featured-hoodies">All Hoodies</a></li>
+          <li class="menu-item"><a href="#featured-hoodies">Oversized (450 GSM)</a></li>
+          <li class="menu-item"><a href="#featured-hoodies">Acid Wash</a></li>
+          <li class="menu-item"><a href="#brand-story">The Manifesto</a></li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    <!-- Header Actions (Account/Login, Currency, Cart) -->
+    <div class="header__actions">
+      <!-- Indian Currency Badge -->
+      <div class="header__currency-badge" title="Store Currency: Indian Rupee">
+        <span class="flag-icon">🇮🇳</span>
+        <span class="currency-label">INR (₹)</span>
+      </div>
+
+      <!-- Customer Login / Account Trigger -->
+      <button type="button" class="header__icon-btn login-trigger" id="LoginTrigger" aria-label="Open Account Login" title="Sign In / Register">
+        {% render 'icon-user' %}
+      </button>
+
+      <!-- Cart Trigger Button -->
+      <button type="button" class="header__icon-btn cart-trigger" id="CartTrigger" aria-label="Open cart">
+        {% render 'icon-cart' %}
+        <span class="header__cart-badge" id="HeaderCartBadge">0</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Slide Navigation -->
+  <div class="mobile-nav-drawer" id="MobileNavDrawer">
+    <div class="mobile-nav-overlay" id="MobileNavOverlay"></div>
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" style="height: 38px; width: auto;" onerror="this.src='./assets/vimi-logo.png';">
+        <button type="button" class="mobile-nav-close" id="MobileNavClose">
+          {% render 'icon-close' %}
+        </button>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="{{ routes.root_url }}">Home</a></li>
+        <li><a href="#featured-hoodies">Shop All Hoodies</a></li>
+        <li><a href="#featured-hoodies">Oversized Fit (450 GSM)</a></li>
+        <li><a href="#featured-hoodies">Acid Wash Edition</a></li>
+        <li><a href="#brand-story">Our Story</a></li>
+        <li><a href="#" class="mobile-login-link" id="MobileLoginLink">👤 Sign In / Create Account</a></li>
+      </ul>
+      <div class="mobile-nav-perks">
+        <p>🚚 Free Shipping across India on ₹999+</p>
+        <p>💵 Cash on Delivery (COD) Supported</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

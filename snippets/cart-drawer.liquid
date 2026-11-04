@@ -1,0 +1,68 @@
+{%- comment -%}
+  Slide-out AJAX Cart Drawer for VIMI
+{%- endcomment -%}
+
+<div id="CartDrawer" class="cart-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+  <div class="cart-drawer__overlay" data-cart-close></div>
+  <div class="cart-drawer__panel">
+    
+    <!-- Drawer Header -->
+    <div class="cart-drawer__header">
+      <div class="cart-drawer__header-left">
+        <h2 class="cart-drawer__title">Your Bag</h2>
+        <span class="cart-drawer__count-badge" id="CartDrawerCount">0</span>
+      </div>
+      <button type="button" class="cart-drawer__close" data-cart-close aria-label="Close cart">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Bar (India specific: threshold ₹999 or ₹1499) -->
+    <div class="cart-drawer__shipping-bar">
+      <div class="shipping-bar__text">
+        <span id="ShippingBarMessage">Add ₹999 for <strong>FREE Express Shipping across India</strong> 🚚</span>
+      </div>
+      <div class="shipping-bar__track">
+        <div class="shipping-bar__fill" id="ShippingBarFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Drawer Items List -->
+    <div class="cart-drawer__body" id="CartDrawerItems">
+      <!-- Items dynamically populated via cart-drawer.js or rendered if server rendered -->
+      <div class="cart-drawer__empty" id="CartDrawerEmpty">
+        <div class="empty-icon-wrap">
+          {% render 'icon-cart' %}
+        </div>
+        <p class="empty-title">Your shopping bag is empty</p>
+        <p class="empty-subtitle">Explore our latest heavyweight oversized hoodie drop.</p>
+        <a href="#featured-hoodies" class="btn btn--primary" data-cart-close>Explore Drop</a>
+      </div>
+      
+      <div class="cart-drawer__items-list" id="CartDrawerList" style="display: none;"></div>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="cart-drawer__footer" id="CartDrawerFooter" style="display: none;">
+      <!-- Indian E-Commerce Perks -->
+      <div class="cart-drawer__perks">
+        <span class="perk-item">✓ Cash on Delivery (COD)</span>
+        <span class="perk-item">✓ 7-Day Easy Exchange</span>
+      </div>
+
+      <div class="cart-drawer__subtotal-row">
+        <span>Subtotal</span>
+        <span class="cart-drawer__subtotal-price" id="CartDrawerSubtotal">₹0</span>
+      </div>
+      <p class="cart-drawer__taxes-note">Taxes included. Shipping calculated at checkout.</p>
+
+      <form action="{{ routes.cart_url }}" method="post" id="CartDrawerForm">
+        <button type="submit" name="checkout" class="btn btn--checkout">
+          <span>PROCEED TO CHECKOUT •</span>
+          <span id="CartDrawerCheckoutTotal">₹0</span>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>

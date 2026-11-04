@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "features": {
+      "type": "features-banner",
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "YOU MAY ALSO LIKE",
+        "subtitle": "Pair with other heavyweight drops from VIMI.",
+        "products_to_show": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "features",
+    "recommendations"
+  ]
+}

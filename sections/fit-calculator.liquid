@@ -1,0 +1,56 @@
+<section class="section-fit-finder" id="fit-finder">
+  <div class="container">
+    <div class="fit-finder-box">
+      <h2 class="fit-finder-title">STREETWEAR SILHOUETTE CALCULATOR</h2>
+      <p class="fit-finder-sub">ViMi hoodies are naturally engineered with oversized drop shoulders. Find your tailored fit.</p>
+
+      <div class="fit-inputs-row">
+        <div>
+          <label class="fit-label">Your Height:</label>
+          <select id="FitHeight" class="fit-select">
+            <option value="S">5'2" – 5'5" (157 - 165 cm)</option>
+            <option value="M">5'6" – 5'8" (167 - 173 cm)</option>
+            <option value="L" selected>5'9" – 5'11" (175 - 180 cm)</option>
+            <option value="XL">6'0" – 6'2" (182 - 188 cm)</option>
+            <option value="XXL">6'3"+ (190+ cm)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="fit-label">Your Build / Weight:</label>
+          <select id="FitWeight" class="fit-select">
+            <option value="0">Slim (Under 65 kg)</option>
+            <option value="0" selected>Average / Athletic (65 - 80 kg)</option>
+            <option value="1">Broad / Muscular (80 - 95 kg)</option>
+            <option value="2">Heavyweight (95+ kg)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="fit-label">Desired Aesthetic:</label>
+          <select id="FitVibe" class="fit-select">
+            <option value="0" selected>Signature Oversized (Recommended)</option>
+            <option value="1">Super Baggy / Extreme Drape</option>
+            <option value="-1">Closer Regular Fit</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="fit-result-badge" id="FitResultBadge">
+        🎯 Recommended Size: <strong>LARGE (L)</strong> — Gives our signature boxy drape with ideal wrist stacking.
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fit Calculator",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Fit Calculator"
+    }
+  ]
+}
+{% endschema %}

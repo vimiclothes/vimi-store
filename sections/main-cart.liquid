@@ -1,0 +1,81 @@
+<section class="section-main-cart">
+  <div class="container cart-page-container">
+    <h1 class="cart-page-title">Your Shopping Bag</h1>
+
+    <div class="cart-page-layout">
+      <div class="cart-page-items">
+        {%- if cart.item_count > 0 -%}
+          <table class="cart-items-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for item in cart.items -%}
+                <tr>
+                  <td class="cart-item-info">
+                    <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="80" height="90">
+                    <div>
+                      <a href="{{ item.url }}" class="cart-item-title">{{ item.product.title }}</a>
+                      <p class="cart-item-variant">{{ item.variant.title }}</p>
+                      <p class="cart-item-price">{{ item.final_price | money }}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span>{{ item.quantity }}</span>
+                  </td>
+                  <td>
+                    <strong>{{ item.final_line_price | money }}</strong>
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        {%- else -%}
+          <div class="cart-empty-message">
+            <p>Your bag is currently empty.</p>
+            <a href="{{ routes.root_url }}" class="btn btn--primary">Discover VIMI Hoodies</a>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="cart-page-summary">
+        <h3 class="summary-title">Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping (Pan-India)</span>
+          <span class="text-green">FREE on orders > ₹999</span>
+        </div>
+        <div class="summary-row total-row">
+          <strong>Estimated Total</strong>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        <p class="summary-note">Inclusive of GST taxes. Calculated at checkout.</p>
+        
+        <form action="{{ routes.cart_url }}" method="post">
+          <button type="submit" name="checkout" class="btn btn--primary btn--full">
+            Proceed to Checkout
+          </button>
+        </form>
+
+        <div class="cart-page-trust">
+          <p>✓ Cash on Delivery (COD) Available</p>
+          <p>✓ 100% Secure Checkout via UPI, Cards, NetBanking</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": []
+}
+{% endschema %}

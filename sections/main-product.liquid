@@ -1,0 +1,180 @@
+<section class="section-main-product" id="MainProductSection">
+  <div class="container product-page-container">
+    
+    <!-- Product Gallery -->
+    <div class="product-gallery">
+      <div class="gallery-main-image">
+        {%- if product.featured_image -%}
+          <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}" id="ProductMainImage" class="main-img">
+        {%- else -%}
+          <!-- SVG Demo Hoodie visual for preview -->
+          <div class="demo-hoodie-stage">
+            <svg viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" class="stage-svg">
+              <rect width="500" height="580" rx="20" fill="#141414"/>
+              <circle cx="250" cy="270" r="190" fill="#3b82f6" fill-opacity="0.1" filter="blur(50px)"/>
+              <!-- Large detailed hoodie artwork -->
+              <g id="demoHoodieArtwork">
+                <path d="M140 160 L360 160 L380 470 L120 470 Z" fill="#181818" stroke="#333" stroke-width="2"/>
+                <rect x="115" y="470" width="270" height="35" rx="4" fill="#0d0d0d" stroke="#252525"/>
+                <path d="M140 160 L40 310 L85 340 L165 220 Z" fill="#181818" stroke="#292929"/>
+                <rect x="35" y="310" width="52" height="28" rx="4" transform="rotate(-30 40 310)" fill="#0d0d0d"/>
+                <path d="M360 160 L460 310 L415 340 L335 220 Z" fill="#181818" stroke="#292929"/>
+                <rect x="415" y="332" width="52" height="28" rx="4" transform="rotate(30 415 332)" fill="#0d0d0d"/>
+                <path d="M165 330 L335 330 L355 450 L145 450 Z" fill="#121212" stroke="#282828" stroke-width="1.5" rx="8"/>
+                <path d="M170 165 C150 90, 190 40, 250 40 C310 40, 350 90, 330 165 C305 190, 195 190, 170 165 Z" fill="#181818" stroke="#383838" stroke-width="2"/>
+                <ellipse cx="250" cy="125" rx="46" ry="50" fill="#070707"/>
+                <path d="M230 165 Q225 240, 230 270" stroke="#f0f0f0" stroke-width="4" stroke-linecap="round"/>
+                <path d="M270 165 Q275 240, 270 270" stroke="#f0f0f0" stroke-width="4" stroke-linecap="round"/>
+                <text x="250" y="245" text-anchor="middle" fill="#ffffff" font-family="'Syne', sans-serif" font-weight="800" font-size="28" letter-spacing="6">VIMI</text>
+                <text x="250" y="268" text-anchor="middle" fill="#888888" font-family="sans-serif" font-size="10" letter-spacing="3">HEAVYWEIGHT 450 GSM</text>
+              </g>
+            </svg>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Product Purchasing Info -->
+    <div class="product-info-panel">
+      
+      <div class="product-info__badge-row">
+        <span class="badge-tag">HEAVYWEIGHT FRENCH TERRY</span>
+        <span class="badge-stock">⚡ High Demand • Limited Stock</span>
+      </div>
+
+      <h1 class="product-info__title">
+        {{ product.title | default: "VIMI Signature Oversized Heavyweight Hoodie" }}
+      </h1>
+
+      <div class="product-info__rating-row">
+        <div class="stars">
+          {% render 'icon-star' %}
+          {% render 'icon-star' %}
+          {% render 'icon-star' %}
+          {% render 'icon-star' %}
+          {% render 'icon-star' %}
+        </div>
+        <span class="rating-text">4.9 / 5.0 (248 Verified Buyer Reviews)</span>
+      </div>
+
+      <div class="product-info__price-box">
+        {%- if product -%}
+          {% render 'price', product: product %}
+        {%- else -%}
+          {% render 'price', price: 199900, compare_at_price: 299900 %}
+        {%- endif -%}
+        <span class="tax-tag">Inclusive of all Indian taxes (GST)</span>
+      </div>
+
+      <!-- Size Selector -->
+      <div class="product-info__option-group">
+        <div class="option-header">
+          <label class="option-label">Select Size (Oversized Boxy Fit):</label>
+          <button type="button" class="btn-text-link" onclick="alert('VIMI SIZE CHART (INCHES):\n\nS: Chest 42 | Length 27\nM: Chest 44 | Length 28\nL: Chest 46 | Length 29\nXL: Chest 48 | Length 30\nXXL: Chest 50 | Length 31\n\n*Note: Fits naturally oversized. Order your normal size for street style or size down for regular fit.');">
+            📏 Size Guide
+          </button>
+        </div>
+        <div class="size-swatches" id="SizeSwatches">
+          <button type="button" class="size-btn">S (38-40")</button>
+          <button type="button" class="size-btn">M (40-42")</button>
+          <button type="button" class="size-btn active">L (42-44")</button>
+          <button type="button" class="size-btn">XL (44-46")</button>
+          <button type="button" class="size-btn">XXL (46-48")</button>
+        </div>
+      </div>
+
+      <!-- Quantity + Add to Cart Form -->
+      <form method="post" action="{{ routes.cart_add_url }}" class="product-form" id="AddToCartForm">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id | default: '1' }}">
+        
+        <div class="form-action-row">
+          <div class="quantity-input-box">
+            <button type="button" class="qty-btn" id="QtyMinus">-</button>
+            <input type="number" name="quantity" id="ProductQty" value="1" min="1" max="10" readonly>
+            <button type="button" class="qty-btn" id="QtyPlus">+</button>
+          </div>
+
+          <button 
+            type="button" 
+            class="btn btn--primary btn--full btn-quick-add"
+            data-product-title="{{ product.title | default: 'VIMI Signature Oversized Heavyweight Hoodie' }}"
+            data-product-price="{{ product.price | default: 199900 }}"
+          >
+            ADD TO BAG • ₹1,999
+          </button>
+        </div>
+
+        <button type="button" class="btn btn--secondary btn--full" style="margin-top: 10px;" onclick="document.querySelector('.btn-quick-add').click();">
+          ⚡ BUY NOW WITH CASH ON DELIVERY / UPI
+        </button>
+      </form>
+
+      <!-- Indian Pincode Delivery Checker Widget -->
+      <div class="pincode-checker-box">
+        <label class="pincode-label">Check Delivery to your City/Pincode:</label>
+        <div class="pincode-input-group">
+          <input type="text" id="PincodeInput" placeholder="Enter 6-digit Pincode (e.g. 110001, 400001)" maxlength="6">
+          <button type="button" class="btn btn--outline" id="PincodeCheckBtn">Check</button>
+        </div>
+        <p class="pincode-result" id="PincodeResult"></p>
+      </div>
+
+      <!-- Feature Badges -->
+      <div class="product-perks-list">
+        <div class="perk-row">
+          <span class="perk-icon">🚚</span>
+          <div>
+            <strong>Pan-India Free Express Delivery</strong>
+            <span>Standard delivery 2-4 business days across metro cities.</span>
+          </div>
+        </div>
+        <div class="perk-row">
+          <span class="perk-icon">💵</span>
+          <div>
+            <strong>Cash on Delivery (COD) Supported</strong>
+            <span>Pay on doorstep via Cash or any UPI App (GPay/PhonePe).</span>
+          </div>
+        </div>
+        <div class="perk-row">
+          <span class="perk-icon">🔄</span>
+          <div>
+            <strong>7 Days Doorstep Size Exchange</strong>
+            <span>Easy reverse pickup from your doorstep if size doesn't fit.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion Specifications -->
+      <div class="product-accordions">
+        <details class="accordion-item" open>
+          <summary class="accordion-summary">Fabric & Specifications</summary>
+          <div class="accordion-content">
+            <ul>
+              <li><strong>Fabric:</strong> 100% Combed Compact Cotton (Loopback French Terry)</li>
+              <li><strong>Fabric Density:</strong> 450 GSM Heavyweight</li>
+              <li><strong>Fit:</strong> Drop-shoulder boxy silhouette (Modern Streetwear)</li>
+              <li><strong>Hood:</strong> Double-layered self-fabric hood structure</li>
+              <li><strong>Origin:</strong> Meticulously knitted and stitched in India</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-summary">Wash & Care Instructions</summary>
+          <div class="accordion-content">
+            <p>To preserve the heavy drape and deep dye: Wash cold inside out with similar colors. Do not bleach or tumble dry on high heat. Warm iron on reverse side, avoid ironing directly on puff or screen prints.</p>
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %}

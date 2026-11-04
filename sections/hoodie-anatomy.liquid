@@ -1,0 +1,82 @@
+<section class="section-anatomy" id="hoodie-anatomy">
+  <div class="container">
+    <div class="anatomy-grid">
+      
+      <!-- Visual with callouts -->
+      <div class="anatomy-visual-card">
+        <img 
+          src="{{ 'vimi-hoodie-07.jpg' | asset_url }}" 
+          alt="ViMi Hoodie Anatomy" 
+          class="anatomy-visual-img"
+          onerror="this.src='./assets/hoodies/vimi-hoodie-07.jpg'; if(this.src.indexOf('assets/hoodies')!==-1 && !this.complete) this.src='./assets/vimi-hoodie-07.jpg';"
+        >
+        <div class="anatomy-badge-float">
+          <div>
+            <strong>ARCHITECTURAL SPECIFICATION</strong>
+            <span>450 GSM FRENCH TERRY • 100% COMBED COTTON</span>
+          </div>
+          <button type="button" class="btn btn--primary open-buying-window" data-product-title="ViMi Phantom Black 450 GSM Boxy Cut" data-product-price="1999" data-product-compare="2899" data-product-badge="OVERSIZED" data-product-image="vimi-hoodie-07.jpg" style="padding: 8px 14px; font-size: 0.72rem;">
+            QUICK BUY
+          </button>
+        </div>
+      </div>
+
+      <!-- Detail Explanations -->
+      <div class="anatomy-content">
+        <div class="anatomy-header">
+          <span class="anatomy-tag">ENGINEERED DISCIPLINE</span>
+          <h2 class="anatomy-title">ANATOMY OF A ViMi HOODIE</h2>
+        </div>
+
+        <div class="anatomy-points">
+          
+          <div class="anatomy-point">
+            <span class="point-index">01</span>
+            <div>
+              <h3 class="point-title">Self-Supporting Double Layer Hood</h3>
+              <p class="point-desc">Constructed with dual-layer 450 GSM cotton so the hood stands upright structurally around the neck instead of collapsing flat.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-point">
+            <span class="point-index">02</span>
+            <div>
+              <h3 class="point-title">Dropped Shoulder Architecture</h3>
+              <p class="point-desc">Cut 4 inches wider than traditional tailoring. Creates that relaxed, aesthetic silhouette favored in modern luxury streetwear.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-point">
+            <span class="point-index">03</span>
+            <div>
+              <h3 class="point-title">High-Density Loopback French Terry</h3>
+              <p class="point-desc">Zero polyester, pure 100% Indian combed cotton. Pre-shrunk and bio-washed for cloud-like interior softness without shedding fuzz.</p>
+            </div>
+          </div>
+
+          <div class="anatomy-point">
+            <span class="point-index">04</span>
+            <div>
+              <h3 class="point-title">Snug 2x2 Reinforced Ribbing</h3>
+              <p class="point-desc">Wrist cuffs and bottom hem engineered with heavy-gauge ribbed elastane to prevent loose sagging over years of heavy rotation.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hoodie Anatomy",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Hoodie Anatomy"
+    }
+  ]
+}
+{% endschema %}

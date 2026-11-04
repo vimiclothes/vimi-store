@@ -1,46 +1,24 @@
-# vimi-storefront
+# vimi-store
 
 > **ViMi Official** — Monochromatic Heavyweight Luxury Streetwear & 450 GSM Drop-Shoulder Hoodies. Engineered in India.
-
-Live Client Demo: Ready for GitHub Pages deployment (`https://<username>.github.io/vimi-storefront/`).
-
----
-
-### Features & Client Showcase
-- **Strict Monochrome Luxury Palette**: Minimalist deep black `#000000`, high contrast crisp white `#ffffff`, zero background glow.
-- **Aggressive Metal & Silver Shine Headlines**: Dynamic animated chrome metal shine reflections on luxury typography.
-- **Signature Hero Drop**:
-  - **Slide 01**: `ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie` (stays on screen longer for high-impact showcase).
-  - **Rotating Neon Stamp**: `01 • 450 GSM • MADE IN INDIA • HEAVYWEIGHT` circular animated badge.
-  - **Angled Tag**: `SIGNATURE DROP #01`.
-  - **Brutalist Ticker**: `● HOODIES FROM ₹1,499 ● NO FAST FASHION ● MADE IN INDIA ● 450 GSM HEAVYWEIGHT`.
-- **Complete 27-Hoodie Catalog**: Full archive with custom streetwear naming, filter tabs (Archive, Acid Wash, Minimalist, Cyber Kanji, Flagship), and Indian Rupee pricing (₹1,699 – ₹3,299).
-- **Payment Badges**: UPI, GPay, PhonePe, Paytm, RuPay, Visa, Mastercard, and Cash on Delivery (COD).
-- **Interactive Modals**:
-  - Quick Buying Window (`#BuyingWindowModal`) with rapid size selection (`S`–`XXL`) and one-click checkout.
-  - The ViMi Syndicate Login (`#LoginModal`) with Indian (+91) OTP flow.
-  - Slide-out Cart Drawer with free shipping threshold progress bar.
-- **Smart Size Finder**: Height & weight interactive calculator recommending custom Indian boxy fits.
+> Official Shopify 2.0 Theme Repository (`https://github.com/vimiclothes/vimi-store`).
 
 ---
 
-### Deploying on GitHub Pages
-1. Push this repository to GitHub:
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: complete vimi storefront with aggressive chrome metal hero and all 27 hoodies"
-   git branch -M main
-   git remote add origin https://github.com/blazecodeprakhar/vimi-storefront.git
-   git push -u origin main
-   ```
-2. In your GitHub repository:
-   - Go to **Settings > Pages**.
-   - Under **Build and deployment > Source**, select **Deploy from a branch**.
-   - Select branch **`main`** and folder **`/ (root)`**, then click **Save**.
-   - Your live URL will be active at: `https://blazecodeprakhar.github.io/vimi-storefront/`.
+### Shopify 2.0 Theme Architecture
+- **`layout/`**: `theme.liquid` — master HTML/Shopify wrapper with strict 4-card PC grid and mobile hero isolation.
+- **`sections/`**: `hero-banner.liquid`, `featured-collection.liquid`, `main-collection.liquid`, `hoodie-anatomy.liquid`, `header.liquid`, `footer.liquid`.
+- **`snippets/`**: `product-card.liquid`, `buying-window.liquid`, `cart-drawer.liquid`.
+- **`templates/`**: JSON & Liquid templates for Online Store 2.0.
+- **`assets/`**: High-performance progressive Web-optimized catalog photography, `base.css`, `theme.js`, `cart-drawer.js`.
+- **`config/`**: `settings_schema.json`, `settings_data.json` for Shopify Visual Customizer.
+- **`locales/`**: Multi-language localization dictionary.
 
 ---
 
-### Shopify Production Theme
-For uploading to Shopify production, use the bundled [vimi-theme.zip](file:///c:/Users/prakh/OneDrive/Desktop/Shopify%20Liquid/vimi-theme.zip) under **Shopify Admin > Online Store > Themes > Add theme > Upload zip file**.
+### Key Features
+- **Strict 4-Column PC Grid**: Perfectly spaced 4 hoodie cards per row on desktop viewports ($X = 28\text{px},\ 369\text{px},\ 710\text{px},\ 1051\text{px}$).
+- **Ultra-Luxury Mobile Hero**: Dedicated phone experience with scrolling announcement marquee, hot pill badges, swipeable chips, and scroll-snap hoodie carousel.
+- **Dark Metallic Shimmer & Blur-Up Animations**: GPU-accelerated image reveal with brushed titanium shimmer skeleton and zero flash-of-unstyled-content.
+- **Dedicated Buying Window Modal**: Quick size selector (`S`–`XXL`) and rapid checkout trigger.
+- **Progressive Image Delivery**: Lanczos-optimized 450 GSM catalog images with instant disk cache decoders.

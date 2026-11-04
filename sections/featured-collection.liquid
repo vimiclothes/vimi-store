@@ -1,0 +1,327 @@
+<section class="section-featured-collection" id="featured-hoodies">
+  <div class="container">
+    
+    <div class="section-header">
+      <div class="section-header__tag">
+        <span>CURATED MONOCHROME STREETWEAR ARCHIVE</span>
+      </div>
+      <div class="section-header__row">
+        <h2 class="section-title">{{ section.settings.title | default: "HOODIE ARCHIVE 2026" }}</h2>
+        <p class="section-subtitle">
+          {{ section.settings.subtitle | default: "Engineered boxy drop-shoulder fits. Built with 450 GSM luxury French Terry cotton for supreme comfort. All 27 exclusive hoodie grails." }}
+        </p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="collection-filter-tabs">
+        <button type="button" class="filter-tab active" data-filter="all">All Hoodies (27 Grails)</button>
+        <button type="button" class="filter-tab" data-filter="oversized">Oversized (450 GSM)</button>
+        <button type="button" class="filter-tab" data-filter="acid-wash">Acid Wash Edition</button>
+        <button type="button" class="filter-tab" data-filter="graphics">Graphic Drops</button>
+        <button type="button" class="filter-tab" data-filter="minimalist">Minimalist Boxy</button>
+      </div>
+    </div>
+
+    <!-- Product Grid Featuring ALL 27 Hoodies from hoodies/ folder -->
+    <div class="products-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%;">
+      {%- assign collection = collections[section.settings.collection] -%}
+
+      {%- if collection != blank and collection.products.size > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        
+        <!-- 01 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SKELETON SPINE" Rhinestone Graphic Heavyweight Hoodie',
+          demo_price: 249900,
+          demo_compare: 369900,
+          demo_badge: 'CRAZZZY GRAIL',
+          demo_image: 'vimi-hoodie-01.jpg'
+        %}
+
+        <!-- 02 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "CRAZZZY ARCHIVE" Vintage Heather Boxy Hoodie',
+          demo_price: 219900,
+          demo_compare: 319900,
+          demo_badge: 'BESTSELLER',
+          demo_image: 'vimi-hoodie-02.jpg'
+        %}
+
+        <!-- 03 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "NOCTURNE" Acid Washed Drop-Shoulder Hoodie',
+          demo_price: 239900,
+          demo_compare: 349900,
+          demo_badge: 'ACID WASH',
+          demo_image: 'vimi-hoodie-03.jpg'
+        %}
+
+        <!-- 04 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "GRAIL DRIP" Phantom Black 450 GSM Hoodie',
+          demo_price: 199900,
+          demo_compare: 299900,
+          demo_badge: '450 GSM',
+          demo_image: 'vimi-hoodie-04.jpg'
+        %}
+
+        <!-- 05 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "DARK OBSIDIAN" Raw Hem Heavyweight Hoodie',
+          demo_price: 189900,
+          demo_compare: 269900,
+          demo_badge: 'RAW CUT',
+          demo_image: 'vimi-hoodie-05.jpg'
+        %}
+
+        <!-- 06 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "CYBER DRIFT" Japanese Kanji Graphic Hoodie',
+          demo_price: 269900,
+          demo_compare: 389900,
+          demo_badge: 'CYBER DROP',
+          demo_image: 'vimi-hoodie-06.jpg'
+        %}
+
+        <!-- 07 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "MONOLITH" Minimalist Stand-Up Hood Pullover',
+          demo_price: 229900,
+          demo_compare: 329900,
+          demo_badge: 'STAND-UP HOOD',
+          demo_image: 'vimi-hoodie-07.jpg'
+        %}
+
+        <!-- 08 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "EARTH DUST" Mud Washed Heavy Terry Hoodie',
+          demo_price: 209900,
+          demo_compare: 299900,
+          demo_badge: 'PIGMENT DYE',
+          demo_image: 'vimi-hoodie-08.jpg'
+        %}
+
+        <!-- 09 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "CRIMSON BLOOD" Acid Washed Oversized Hoodie',
+          demo_price: 259900,
+          demo_compare: 379900,
+          demo_badge: 'LIMITED GRAIL',
+          demo_image: 'vimi-hoodie-09.jpg'
+        %}
+
+        <!-- 10 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "GHOST WHITE" High-Density French Terry Hoodie',
+          demo_price: 279900,
+          demo_compare: 399900,
+          demo_badge: '450 GSM TERRY',
+          demo_image: 'vimi-hoodie-10.jpg'
+        %}
+
+        <!-- 11 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SYNDICATE" 3D Puff Embroidery Boxy Hoodie',
+          demo_price: 239900,
+          demo_compare: 339900,
+          demo_badge: '3D EMBROIDERY',
+          demo_image: 'vimi-hoodie-11.jpg'
+        %}
+
+        <!-- 12 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "IRON COBALT" Distressed Street Pullover',
+          demo_price: 249900,
+          demo_compare: 359900,
+          demo_badge: 'DISTRESSED',
+          demo_image: 'vimi-hoodie-12.jpg'
+        %}
+
+        <!-- 13 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "CONCRETE JUNGLE" Mineral Washed Hoodie',
+          demo_price: 199900,
+          demo_compare: 289900,
+          demo_badge: 'MINERAL DYE',
+          demo_image: 'vimi-hoodie-13.jpg'
+        %}
+
+        <!-- 14 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "VINTAGE MAUVE" Heavyweight Drop Shoulder',
+          demo_price: 229900,
+          demo_compare: 329900,
+          demo_badge: 'BOXY AF',
+          demo_image: 'vimi-hoodie-14.jpg'
+        %}
+
+        <!-- 15 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SHADOW BOX" Double-Stitched Street Hoodie',
+          demo_price: 179900,
+          demo_compare: 249900,
+          demo_badge: 'STREET WEAR',
+          demo_image: 'vimi-hoodie-15.jpg'
+        %}
+
+        <!-- 16 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SMOKE GREY" 450 GSM Loopback French Terry',
+          demo_price: 219900,
+          demo_compare: 319900,
+          demo_badge: 'PRE-SHRUNK',
+          demo_image: 'vimi-hoodie-16.jpg'
+        %}
+
+        <!-- 17 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SILVER CHROME" Minimal Monogram Hoodie',
+          demo_price: 289900,
+          demo_compare: 419900,
+          demo_badge: 'EXCLUSIVE',
+          demo_image: 'vimi-hoodie-17.jpg'
+        %}
+
+        <!-- 18 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "DESERT KHAKI" Boxy Fit Heavyweight Hoodie',
+          demo_price: 189900,
+          demo_compare: 269900,
+          demo_badge: 'EARTH TONE',
+          demo_image: 'vimi-hoodie-18.jpg'
+        %}
+
+        <!-- 19 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "MIDNIGHT VOID" Pure Obsidian Armor Hoodie',
+          demo_price: 299900,
+          demo_compare: 449900,
+          demo_badge: 'HEAVY ARMOR',
+          demo_image: 'vimi-hoodie-19.jpg'
+        %}
+
+        <!-- 20 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "GRAIL REAPER" Back-Print Oversized Hoodie',
+          demo_price: 269900,
+          demo_compare: 389900,
+          demo_badge: 'BACK PRINT',
+          demo_image: 'vimi-hoodie-20.jpg'
+        %}
+
+        <!-- 21 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "HEAVYWEIIIGHT" Essential Drop-Shoulder Hoodie',
+          demo_price: 199900,
+          demo_compare: 289900,
+          demo_badge: 'ESSENTIAL',
+          demo_image: 'vimi-hoodie-21.jpg'
+        %}
+
+        <!-- 22 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "SLATE WASH" Vintage Distressed Terry Hoodie',
+          demo_price: 239900,
+          demo_compare: 339900,
+          demo_badge: 'VINTAGE',
+          demo_image: 'vimi-hoodie-22.jpg'
+        %}
+
+        <!-- 23 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "STREET ANARCHY" Multi-Graphic Boxy Pullover',
+          demo_price: 259900,
+          demo_compare: 369900,
+          demo_badge: 'GRAPHIC',
+          demo_image: 'vimi-hoodie-23.jpg'
+        %}
+
+        <!-- 24 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "CARBON FIBER" Dark Heather Oversized Hoodie',
+          demo_price: 189900,
+          demo_compare: 269900,
+          demo_badge: 'HEATHER TERRY',
+          demo_image: 'vimi-hoodie-24.jpg'
+        %}
+
+        <!-- 25 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "NO CAP" Heavy French Terry Raw Cut Hoodie',
+          demo_price: 219900,
+          demo_compare: 309900,
+          demo_badge: 'NO CAP',
+          demo_image: 'vimi-hoodie-25.jpg'
+        %}
+
+        <!-- 26 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "STORM BLUE" Mineral Pigment Dye Hoodie',
+          demo_price: 249900,
+          demo_compare: 359900,
+          demo_badge: 'MINERAL DYE',
+          demo_image: 'vimi-hoodie-26.jpg'
+        %}
+
+        <!-- 27 -->
+        {% render 'product-card',
+          demo_title: 'ViMi "ULTIMATE GRAIL" 500 GSM Limited Edition Drop',
+          demo_price: 329900,
+          demo_compare: 499900,
+          demo_badge: '500 GSM GRAIL',
+          demo_image: 'vimi-hoodie-27.jpg'
+        %}
+
+      {%- endif -%}
+    </div>
+
+    <!-- Collection bottom CTA -->
+    <div class="collection-footer-cta">
+      <p class="bottom-guarantee">📦 <strong>All orders are packaged in custom ViMi matte-black luxury zip dust bags</strong></p>
+      <a href="#hero-banner" class="btn btn--outline">Back to Top ↑</a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "HOODIE ARCHIVE 2026"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Engineered boxy drop-shoulder fits. Built with 450 GSM luxury French Terry cotton for supreme comfort. All 27 exclusive hoodie grails."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "default": 28,
+      "label": "Maximum products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

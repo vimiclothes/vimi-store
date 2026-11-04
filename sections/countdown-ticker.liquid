@@ -1,0 +1,49 @@
+<section class="section-countdown-strip">
+  <div class="container countdown-strip-inner">
+    
+    <div class="countdown-title-wrap">
+      <span class="countdown-status-indicator"></span>
+      <div>
+        <span class="countdown-title">NEXT ARCHIVE DROP • DROP 02 [LIMITED 50 PIECES]</span>
+      </div>
+    </div>
+
+    <div class="countdown-timer-boxes" id="CountdownTimer">
+      <div class="time-box">
+        <span class="time-num" id="TimerDays">03</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time-box">
+        <span class="time-num" id="TimerHours">14</span>
+        <span class="time-label">Hours</span>
+      </div>
+      <div class="time-box">
+        <span class="time-num" id="TimerMins">28</span>
+        <span class="time-label">Mins</span>
+      </div>
+      <div class="time-box">
+        <span class="time-num" id="TimerSecs">45</span>
+        <span class="time-label">Secs</span>
+      </div>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn--outline" id="DropNotifyBtn" onclick="document.getElementById('LoginTrigger').click();" style="padding: 10px 18px; font-size: 0.78rem;">
+        GET EARLY ACCESS NOTIFICATION
+      </button>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Countdown Strip",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Countdown Strip"
+    }
+  ]
+}
+{% endschema %}
