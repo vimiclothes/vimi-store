@@ -168,3 +168,28 @@ Shopify Liquid/
      ```bash
      git push storefront main
      ```
+---
+
+## 6. Classic Customer Account System (ViMi Syndicate)
+
+### Architecture & Capabilities:
+* **Native Shopify Form Tags**:
+  - Sign In: {% form 'customer_login' %}
+  - Registration: {% form 'create_customer' %}
+  - Password Reset: {% form 'recover_customer_password' %}
+  - Address Management: {% form 'customer_address', ... %}
+  - Password Change: {% form 'reset_customer_password' %}
+  - Invitation Activation: {% form 'activate_customer_password' %}
+* **Templates**:
+  - 	emplates/customers/account.liquid: VIP member dashboard, order archive table, address summary card, and syndicate perks.
+  - 	emplates/customers/login.liquid: Standalone auth portal for direct /account/login visits with forgot-password inline toggle.
+  - 	emplates/customers/register.liquid: Member onboarding page for /account/register.
+  - 	emplates/customers/addresses.liquid: Full CRUD address book with modals to add, edit, and delete shipping addresses.
+  - 	emplates/customers/order.liquid: Line-item order breakdown receipt with billing/shipping address and live fulfillment status.
+  - 	emplates/customers/reset_password.liquid: Encrypted password reset confirmation page.
+  - 	emplates/customers/activate_account.liquid: Account invitation setup page.
+* **Header Integration**:
+  - Dynamic detection: If customer is logged in, displays Hi, [Name] linking directly to /account. If logged out, displays modal trigger.
+* **Dedicated Stylesheet**:
+  - ssets/customer.css: Luxury dark-monochrome styling for all account views, status badges, forms, and modals.
+

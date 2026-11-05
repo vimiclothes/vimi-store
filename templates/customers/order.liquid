@@ -1,0 +1,148 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-account-page container">
+  <div class="account-header">
+    <div class="account-header__info">
+      <a href="{{ routes.account_url }}" class="back-link">← Back to Order Archive</a>
+      <h1 class="account-title">ORDER {{ order.name }}</h1>
+      <p class="account-meta">Placed on {{ order.created_at | date: "%B %d, %Y at %I:%M %p" }}</p>
+    </div>
+    <div class="account-header__actions">
+      <span class="status-badge status-badge--{{ order.financial_status }}">
+        Payment: {{ order.financial_status_label }}
+      </span>
+      <span class="status-badge status-badge--{{ order.fulfillment_status }}">
+        Fulfillment: {{ order.fulfillment_status_label }}
+      </span>
+    </div>
+  </div>
+
+  {%- if order.cancelled -%}
+    <div class="order-cancelled-banner">
+      <p class="font-bold">Order Cancelled on {{ order.cancelled_at | date: "%B %d, %Y" }}</p>
+      <p>Reason: {{ order.cancel_reason_label }}</p>
+    </div>
+  {%- endif -%}
+
+  <div class="account-grid">
+    <!-- Line Items Table -->
+    <div class="account-orders-card">
+      <div class="card-header">
+        <h2 class="card-title">ITEMS IN THIS DROP</h2>
+      </div>
+
+      <div class="order-items-wrapper">
+        <table class="orders-table order-details-table" role="table">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">SKU</th>
+              <th scope="col">Price</th>
+              <th scope="col">Qty</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for line_item in order.line_items -%}
+              <tr>
+                <td data-label="Product">
+                  <div class="order-line-item">
+                    {%- if line_item.image -%}
+                      <img src="{{ line_item.image | image_url: width: 120 }}" alt="{{ line_item.title | escape }}" class="order-item-img" width="60" height="60">
+                    {%- endif -%}
+                    <div>
+                      <p class="item-title font-bold">{{ line_item.product.title }}</p>
+                      {%- unless line_item.product.has_only_default_variant -%}
+                        <p class="item-variant text-muted">{{ line_item.variant.title }}</p>
+                      {%- endunless -%}
+                    </div>
+                  </div>
+                </td>
+                <td data-label="SKU" class="font-mono text-muted">
+                  {{ line_item.sku | default: '—' }}
+                </td>
+                <td data-label="Price" class="font-mono">
+                  {{ line_item.original_price | money_with_currency }}
+                </td>
+                <td data-label="Qty" class="font-mono">
+                  {{ line_item.quantity }}
+                </td>
+                <td data-label="Total" class="font-mono font-bold">
+                  {{ line_item.final_line_price | money_with_currency }}
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="text-right font-bold">Subtotal</td>
+              <td class="font-mono">{{ order.line_items_subtotal_price | money_with_currency }}</td>
+            </tr>
+            {%- for discount_application in order.discount_applications -%}
+              <tr>
+                <td colspan="4" class="text-right">Discount ({{ discount_application.title }})</td>
+                <td class="font-mono text-danger">-{{ discount_application.total_allocated_amount | money_with_currency }}</td>
+              </tr>
+            {%- endfor -%}
+            {%- for shipping_method in order.shipping_methods -%}
+              <tr>
+                <td colspan="4" class="text-right">Shipping ({{ shipping_method.title }})</td>
+                <td class="font-mono">{{ shipping_method.price | money_with_currency }}</td>
+              </tr>
+            {%- endfor -%}
+            {%- for tax_line in order.tax_lines -%}
+              <tr>
+                <td colspan="4" class="text-right">Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
+                <td class="font-mono">{{ tax_line.price | money_with_currency }}</td>
+              </tr>
+            {%- endfor -%}
+            <tr class="order-total-row">
+              <td colspan="4" class="text-right font-bold">TOTAL</td>
+              <td class="font-mono font-bold order-grand-total">{{ order.total_net_amount | default: order.total_price | money_with_currency }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sidebar: Shipping & Billing Addresses -->
+    <div class="account-sidebar">
+      <div class="account-card">
+        <div class="card-header">
+          <h3 class="card-title">SHIPPING DESTINATION</h3>
+        </div>
+        <div class="card-body">
+          <div class="address-details">
+            <p class="address-name font-bold">{{ order.shipping_address.name }}</p>
+            {%- if order.shipping_address.company != blank -%}
+              <p>{{ order.shipping_address.company }}</p>
+            {%- endif -%}
+            <p>{{ order.shipping_address.street }}</p>
+            <p>{{ order.shipping_address.city }}, {{ order.shipping_address.province_code }} {{ order.shipping_address.zip }}</p>
+            <p>{{ order.shipping_address.country }}</p>
+            {%- if order.shipping_address.phone != blank -%}
+              <p class="address-phone font-mono">{{ order.shipping_address.phone }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <div class="account-card">
+        <div class="card-header">
+          <h3 class="card-title">BILLING ADDRESS</h3>
+        </div>
+        <div class="card-body">
+          <div class="address-details">
+            <p class="address-name font-bold">{{ order.billing_address.name }}</p>
+            {%- if order.billing_address.company != blank -%}
+              <p>{{ order.billing_address.company }}</p>
+            {%- endif -%}
+            <p>{{ order.billing_address.street }}</p>
+            <p>{{ order.billing_address.city }}, {{ order.billing_address.province_code }} {{ order.billing_address.zip }}</p>
+            <p>{{ order.billing_address.country }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

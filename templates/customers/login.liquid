@@ -1,0 +1,157 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-auth-page container">
+  <div class="auth-card">
+    <div class="auth-header text-center">
+      <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="auth-logo" onerror="this.src='./assets/vimi-logo.png';">
+      <h1 class="auth-title" id="LoginTitle">SIGN IN TO ViMi</h1>
+      <p class="auth-subtitle" id="LoginSubtitle">Access your order archive, saved addresses & VIP drops.</p>
+    </div>
+
+    <!-- Sign In Form -->
+    <div id="CustomerLoginForm" class="auth-form-wrapper">
+      {% form 'customer_login', class: 'auth-form' %}
+        {%- if form.errors -%}
+          <div class="login-form-errors" tabindex="-1" autofocus>
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form-group">
+          <label for="CustomerEmail">Email Address</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            required
+            class="form-input"
+            placeholder="name@domain.com"
+          >
+        </div>
+
+        {%- if form.password_needed -%}
+          <div class="form-group">
+            <div class="form-group-flex">
+              <label for="CustomerPassword">Password</label>
+              <a href="#recover" id="RecoverPasswordLink" class="forgot-link">Forgot Password?</a>
+            </div>
+            <input
+              type="password"
+              name="customer[password]"
+              id="CustomerPassword"
+              autocomplete="current-password"
+              required
+              class="form-input"
+              placeholder="••••••••"
+            >
+          </div>
+        {%- endif -%}
+
+        <button type="submit" class="btn btn--primary btn--full auth-submit-btn">
+          <span>SIGN IN</span>
+        </button>
+
+        <div class="auth-switch-prompt">
+          <span>New to ViMi?</span>
+          <a href="{{ routes.account_register_url }}" class="auth-switch-link">Create Syndicate Account →</a>
+        </div>
+      {% endform %}
+    </div>
+
+    <!-- Recover Password Form -->
+    <div id="RecoverPasswordForm" class="auth-form-wrapper" style="display: none;">
+      <h2 class="recover-title text-center">RESET YOUR PASSWORD</h2>
+      <p class="recover-instruction-text text-center">We will send an encrypted link to reset your account password.</p>
+
+      {% form 'recover_customer_password', class: 'auth-form' %}
+        {%- assign recover_success = form.posted_successfully? -%}
+        {%- if form.errors -%}
+          <div class="login-form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form-group">
+          <label for="RecoverEmail">Registered Email</label>
+          <input
+            type="email"
+            name="email"
+            id="RecoverEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            required
+            class="form-input"
+            placeholder="name@domain.com"
+          >
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full auth-submit-btn">
+          <span>SUBMIT RESET REQUEST</span>
+        </button>
+
+        <button type="button" id="CancelRecoverBtn" class="btn-cancel-recover">
+          ← Back to Sign In
+        </button>
+      {% endform %}
+    </div>
+
+    {%- if recover_success == true -%}
+      <div class="login-recovery-success">
+        <p>✓ Reset instructions have been sent to your email.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  (function() {
+    var loginForm = document.getElementById('CustomerLoginForm');
+    var recoverForm = document.getElementById('RecoverPasswordForm');
+    var recoverLink = document.getElementById('RecoverPasswordLink');
+    var cancelBtn = document.getElementById('CancelRecoverBtn');
+    var title = document.getElementById('LoginTitle');
+    var subtitle = document.getElementById('LoginSubtitle');
+
+    function showRecover() {
+      if (loginForm && recoverForm) {
+        loginForm.style.display = 'none';
+        recoverForm.style.display = 'block';
+        if (title) title.style.display = 'none';
+        if (subtitle) subtitle.style.display = 'none';
+      }
+    }
+
+    function showLogin() {
+      if (loginForm && recoverForm) {
+        loginForm.style.display = 'block';
+        recoverForm.style.display = 'none';
+        if (title) title.style.display = 'block';
+        if (subtitle) subtitle.style.display = 'block';
+      }
+    }
+
+    if (recoverLink) {
+      recoverLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        showRecover();
+        window.location.hash = '#recover';
+      });
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        showLogin();
+        window.location.hash = '';
+      });
+    }
+
+    if (window.location.hash === '#recover') {
+      showRecover();
+    }
+  })();
+</script>

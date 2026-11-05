@@ -48,9 +48,16 @@
       </div>
 
       <!-- Customer Login / Account Trigger -->
-      <button type="button" class="header__icon-btn login-trigger" id="LoginTrigger" aria-label="Open Account Login" title="Sign In / Register">
-        {% render 'icon-user' %}
-      </button>
+      {%- if customer -%}
+        <a href="{{ routes.account_url }}" class="header__icon-btn header__account-link" aria-label="My Account" title="Account: {{ customer.first_name | escape }}">
+          {% render 'icon-user' %}
+          <span class="header__account-name">{{ customer.first_name | default: 'Account' }}</span>
+        </a>
+      {%- else -%}
+        <button type="button" class="header__icon-btn login-trigger" id="LoginTrigger" aria-label="Open Account Login" title="Sign In / Register">
+          {% render 'icon-user' %}
+        </button>
+      {%- endif -%}
 
       <!-- Cart Trigger Button -->
       <button type="button" class="header__icon-btn cart-trigger" id="CartTrigger" aria-label="Open cart">
@@ -77,7 +84,12 @@
         <li><a href="#featured-hoodies">Oversized Fit (450 GSM)</a></li>
         <li><a href="#featured-hoodies">Acid Wash Edition</a></li>
         <li><a href="#brand-story">Our Story</a></li>
-        <li><a href="#" class="mobile-login-link" id="MobileLoginLink">👤 Sign In / Create Account</a></li>
+        {%- if customer -%}
+          <li><a href="{{ routes.account_url }}" class="mobile-login-link">👤 Hi, {{ customer.first_name | default: 'VIP Member' | escape }} (My Account)</a></li>
+          <li><a href="{{ routes.account_logout_url }}" class="mobile-logout-link" style="color: #888888; font-size: 0.85rem; padding-left: 20px;">Log Out</a></li>
+        {%- else -%}
+          <li><a href="#" class="mobile-login-link" id="MobileLoginLink">👤 Sign In / Create Account</a></li>
+        {%- endif -%}
       </ul>
       <div class="mobile-nav-perks">
         <p>🚚 Free Shipping across India on ₹999+</p>

@@ -436,20 +436,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // CUSTOMER LOGIN / ACCOUNT MODAL
+  // CUSTOMER LOGIN / ACCOUNT MODAL (Shopify Classic Accounts)
   // =========================================================================
   const loginModal = document.getElementById('LoginModal');
   const loginTrigger = document.getElementById('LoginTrigger');
   const loginCloseTriggers = document.querySelectorAll('[data-login-close]');
+  const loginTabsNav = document.getElementById('LoginTabsNav');
   const tabSignIn = document.getElementById('TabSignIn');
   const tabRegister = document.getElementById('TabRegister');
   const formSignIn = document.getElementById('FormSignIn');
   const formRegister = document.getElementById('FormRegister');
+  const formRecover = document.getElementById('FormRecover');
+  const linkForgotPassword = document.getElementById('LinkForgotPassword');
+  const cancelRecover = document.getElementById('CancelRecover');
 
-  function openLoginModal() {
+  function openLoginModal(view) {
     if (loginModal) {
       loginModal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+
+      if (view === 'recover') {
+        showRecoverForm();
+      } else if (view === 'register') {
+        showRegisterForm();
+      } else {
+        showSignInForm();
+      }
     }
   }
 
@@ -460,27 +472,67 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  if (loginTrigger) loginTrigger.addEventListener('click', openLoginModal);
+  function showSignInForm() {
+    if (loginTabsNav) loginTabsNav.style.display = 'grid';
+    if (tabSignIn) tabSignIn.classList.add('active');
+    if (tabRegister) tabRegister.classList.remove('active');
+    if (formSignIn) formSignIn.style.display = 'flex';
+    if (formRegister) formRegister.style.display = 'none';
+    if (formRecover) formRecover.style.display = 'none';
+  }
+
+  function showRegisterForm() {
+    if (loginTabsNav) loginTabsNav.style.display = 'grid';
+    if (tabRegister) tabRegister.classList.add('active');
+    if (tabSignIn) tabSignIn.classList.remove('active');
+    if (formRegister) formRegister.style.display = 'flex';
+    if (formSignIn) formSignIn.style.display = 'none';
+    if (formRecover) formRecover.style.display = 'none';
+  }
+
+  function showRecoverForm() {
+    if (loginTabsNav) loginTabsNav.style.display = 'none';
+    if (formSignIn) formSignIn.style.display = 'none';
+    if (formRegister) formRegister.style.display = 'none';
+    if (formRecover) formRecover.style.display = 'flex';
+  }
+
+  if (loginTrigger) loginTrigger.addEventListener('click', () => openLoginModal('signin'));
   if (mobileLoginLink) mobileLoginLink.addEventListener('click', (e) => {
     e.preventDefault();
     closeMobileNav();
-    openLoginModal();
+    openLoginModal('signin');
   });
   loginCloseTriggers.forEach(el => el.addEventListener('click', closeLoginModal));
 
-  if (tabSignIn && tabRegister && formSignIn && formRegister) {
-    tabSignIn.addEventListener('click', () => {
-      tabSignIn.classList.add('active');
-      tabRegister.classList.remove('active');
-      formSignIn.style.display = 'flex';
-      formRegister.style.display = 'none';
-    });
-    tabRegister.addEventListener('click', () => {
-      tabRegister.classList.add('active');
-      tabSignIn.classList.remove('active');
-      formRegister.style.display = 'flex';
-      formSignIn.style.display = 'none';
-    });
+  if (tabSignIn) tabSignIn.addEventListener('click', showSignInForm);
+  if (tabRegister) tabRegister.addEventListener('click', showRegisterForm);
+  if (linkForgotPassword) linkForgotPassword.addEventListener('click', (e) => {
+    e.preventDefault();
+    showRecoverForm();
+  });
+  if (cancelRecover) cancelRecover.addEventListener('click', (e) => {
+    e.preventDefault();
+    showSignInForm();
+  });
+
+  // Auto-open modal if there are form errors or specific hash in URL
+  if (window.location.hash === '#recover') {
+    openLoginModal('recover');
+  } else if (window.location.hash === '#register') {
+    openLoginModal('register');
+  } else if (window.location.hash === '#login') {
+    openLoginModal('signin');
+  } else if (loginModal && loginModal.querySelector('.login-form-errors')) {
+    const hasRecoverError = formRecover && formRecover.querySelector('.login-form-errors');
+    const hasRegisterError = formRegister && formRegister.querySelector('.login-form-errors');
+    if (hasRecoverError) {
+      openLoginModal('recover');
+    } else if (hasRegisterError) {
+      openLoginModal('register');
+    } else {
+      openLoginModal('signin');
+    }
   }
 
   window.handleLoginSuccess = function(msg) {

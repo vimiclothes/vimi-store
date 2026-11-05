@@ -1,0 +1,90 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-auth-page container">
+  <div class="auth-card">
+    <div class="auth-header text-center">
+      <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="auth-logo" onerror="this.src='./assets/vimi-logo.png';">
+      <h1 class="auth-title">JOIN THE ViMi SYNDICATE</h1>
+      <p class="auth-subtitle">Create your member profile to unlock secret drops & express Indian checkout.</p>
+    </div>
+
+    <div class="auth-form-wrapper">
+      {% form 'create_customer', class: 'auth-form' %}
+        {%- if form.errors -%}
+          <div class="login-form-errors" tabindex="-1" autofocus>
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label for="RegisterFirstName">First Name</label>
+            <input
+              type="text"
+              name="customer[first_name]"
+              id="RegisterFirstName"
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+              autocomplete="given-name"
+              required
+              class="form-input"
+              placeholder="First name"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="RegisterLastName">Last Name</label>
+            <input
+              type="text"
+              name="customer[last_name]"
+              id="RegisterLastName"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+              autocomplete="family-name"
+              required
+              class="form-input"
+              placeholder="Last name"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="RegisterEmail">Email Address</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="RegisterEmail"
+            {% if form.email %}value="{{ form.email }}"{% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            required
+            class="form-input"
+            placeholder="name@domain.com"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="RegisterPassword">Password</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="RegisterPassword"
+            aria-required="true"
+            required
+            class="form-input"
+            placeholder="Minimum 6 characters"
+          >
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full auth-submit-btn">
+          <span>CREATE ACCOUNT</span>
+        </button>
+
+        <div class="auth-switch-prompt">
+          <span>Already have an account?</span>
+          <a href="{{ routes.account_login_url }}" class="auth-switch-link">Sign In →</a>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</div>

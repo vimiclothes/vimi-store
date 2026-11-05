@@ -1,5 +1,6 @@
 {%- comment -%}
-  ViMi Customer Account & Login Modal
+  ViMi Luxury Customer Account & Login Modal (Classic Accounts)
+  Powered by native Shopify Customer Liquid Forms
 {%- endcomment -%}
 
 <div id="LoginModal" class="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Customer Login">
@@ -11,72 +12,171 @@
 
     <div class="login-modal-content">
       <div class="login-header text-center">
-        <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="login-brand-logo">
+        <img src="{{ 'vimi-logo.png' | asset_url }}" alt="ViMi" class="login-brand-logo" onerror="this.src='./assets/vimi-logo.png';">
         <h3 class="login-title">THE ViMi SYNDICATE</h3>
         <p class="login-subtitle">Sign in for member-only drops, order tracking & fast checkout.</p>
       </div>
 
       <!-- Tabs: Sign In / Create Account -->
-      <div class="login-tabs">
+      <div class="login-tabs" id="LoginTabsNav">
         <button type="button" class="login-tab-btn active" id="TabSignIn">SIGN IN</button>
         <button type="button" class="login-tab-btn" id="TabRegister">CREATE ACCOUNT</button>
       </div>
 
-      <!-- Sign In Form -->
-      <form class="login-form" id="FormSignIn" onsubmit="event.preventDefault(); window.handleLoginSuccess('Welcome back to ViMi Syndicate!');">
+      <!-- Sign In Form (Shopify Native Customer Login) -->
+      {% form 'customer_login', class: 'login-form', id: 'FormSignIn' %}
+        {%- if form.errors -%}
+          <div class="login-form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
         <div class="form-group">
-          <label>Email or Mobile (+91)</label>
-          <input type="text" placeholder="e.g. prakhar@example.com or 9876543210" required class="form-input" id="LoginIdentifier">
+          <label for="CustomerEmail">Email Address</label>
+          <input 
+            type="email" 
+            name="customer[email]" 
+            id="CustomerEmail" 
+            autocomplete="email" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            required 
+            class="form-input" 
+            placeholder="e.g. name@domain.com"
+          >
         </div>
+
         <div class="form-group">
           <div class="form-group-flex">
-            <label>Password</label>
-            <a href="#" class="forgot-link" onclick="alert('Password reset link sent to your email/phone.');">Forgot?</a>
+            <label for="CustomerPassword">Password</label>
+            <button type="button" class="forgot-link" id="LinkForgotPassword">Forgot?</button>
           </div>
-          <input type="password" placeholder="••••••••" required class="form-input" id="LoginPassword">
+          <input 
+            type="password" 
+            name="customer[password]" 
+            id="CustomerPassword" 
+            autocomplete="current-password" 
+            required 
+            class="form-input" 
+            placeholder="••••••••"
+          >
         </div>
 
         <button type="submit" class="btn btn--primary btn--full login-submit-btn">
           <span>SIGN IN TO ViMi</span>
         </button>
 
-        <div class="otp-login-divider">
-          <span>OR SIGN IN WITH</span>
+        <div class="login-perks-box">
+          <p>✓ Exclusive access to secret 450 GSM hoodie drops</p>
+          <p>✓ Faster 1-click checkout with saved addresses</p>
+        </div>
+      {% endform %}
+
+      <!-- Register Form (Shopify Native Customer Creation) -->
+      {% form 'create_customer', class: 'login-form', id: 'FormRegister', style: 'display: none;' %}
+        {%- if form.errors -%}
+          <div class="login-form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="form-group">
+          <label for="RegisterFirstName">First Name</label>
+          <input 
+            type="text" 
+            name="customer[first_name]" 
+            id="RegisterFirstName" 
+            autocomplete="given-name" 
+            required 
+            class="form-input" 
+            placeholder="First Name"
+          >
         </div>
 
-        <button type="button" class="btn btn--secondary btn--full otp-btn" onclick="window.handleLoginSuccess('OTP sent to your mobile phone via SMS!');">
-          <span>📱 One-Time Password (OTP via SMS)</span>
-        </button>
-      </form>
+        <div class="form-group">
+          <label for="RegisterLastName">Last Name</label>
+          <input 
+            type="text" 
+            name="customer[last_name]" 
+            id="RegisterLastName" 
+            autocomplete="family-name" 
+            required 
+            class="form-input" 
+            placeholder="Last Name"
+          >
+        </div>
 
-      <!-- Register Form (Hidden by default) -->
-      <form class="login-form" id="FormRegister" style="display: none;" onsubmit="event.preventDefault(); window.handleLoginSuccess('Account created! Welcome to ViMi Syndicate with ₹200 welcome voucher code FIRST200.');">
         <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" placeholder="e.g. Prakhar Sharma" required class="form-input">
+          <label for="RegisterEmail">Email Address</label>
+          <input 
+            type="email" 
+            name="customer[email]" 
+            id="RegisterEmail" 
+            autocomplete="email" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            required 
+            class="form-input" 
+            placeholder="name@domain.com"
+          >
         </div>
+
         <div class="form-group">
-          <label>Mobile Number (+91)</label>
-          <input type="tel" placeholder="10-digit mobile number" required class="form-input" maxlength="10">
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="name@domain.com" required class="form-input">
-        </div>
-        <div class="form-group">
-          <label>Create Password</label>
-          <input type="password" placeholder="At least 6 characters" required class="form-input">
+          <label for="RegisterPassword">Create Password</label>
+          <input 
+            type="password" 
+            name="customer[password]" 
+            id="RegisterPassword" 
+            autocomplete="new-password" 
+            required 
+            class="form-input" 
+            placeholder="At least 6 characters"
+          >
         </div>
 
         <button type="submit" class="btn btn--primary btn--full login-submit-btn">
           <span>JOIN ViMi SYNDICATE</span>
         </button>
-      </form>
 
-      <div class="login-perks-box">
-        <p>✓ Exclusive access to secret 450 GSM hoodie drops</p>
-        <p>✓ Faster 1-click checkout with saved addresses</p>
-      </div>
+        <div class="login-perks-box">
+          <p>✓ Instant VIP status for all upcoming 2026 streetwear grails</p>
+          <p>✓ Automated tracking for Express Doorstep Delivery</p>
+        </div>
+      {% endform %}
+
+      <!-- Password Recovery Form -->
+      {% form 'recover_customer_password', class: 'login-form', id: 'FormRecover', style: 'display: none;' %}
+        {%- if form.errors -%}
+          <div class="login-form-errors">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <p class="recover-instruction-text">Enter your registered email address below. We'll send you an encrypted link to reset your password.</p>
+
+        <div class="form-group">
+          <label for="RecoverEmail">Registered Email</label>
+          <input 
+            type="email" 
+            name="email" 
+            id="RecoverEmail" 
+            autocomplete="email" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            required 
+            class="form-input" 
+            placeholder="name@domain.com"
+          >
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full login-submit-btn">
+          <span>SEND PASSWORD RESET LINK</span>
+        </button>
+
+        <button type="button" class="btn-cancel-recover" id="CancelRecover">
+          ← Back to Sign In
+        </button>
+      {% endform %}
     </div>
   </div>
 </div>

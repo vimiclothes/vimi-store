@@ -2028,6 +2028,74 @@ img, svg {
   padding: 0 10px;
 }
 
+
+.login-form-errors {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-xs);
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: #f87171;
+  line-height: 1.45;
+}
+
+.login-form-errors ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.recover-instruction-text {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.btn-cancel-recover {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+  margin-top: 4px;
+  transition: color var(--transition-fast);
+}
+
+.btn-cancel-recover:hover {
+  color: #fff;
+}
+
+.header__account-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #141414;
+  border: 1px solid #2e2e2e;
+  transition: all var(--transition-fast);
+}
+
+.header__account-link:hover {
+  background: #1f1f1f;
+  border-color: #444;
+}
+
+.header__account-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .otp-btn {
   font-size: 0.78rem;
   padding: 11px;

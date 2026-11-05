@@ -1,0 +1,149 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-account-page container">
+  <!-- VIP Header Banner -->
+  <header class="account-header">
+    <div class="account-header__info">
+      <div class="account-vip-badge">
+        <span class="badge-dot"></span> ViMi SYNDICATE • VIP TIER 01
+      </div>
+      <h1 class="account-title">WELCOME, {{ customer.first_name | upcase | default: 'VIP MEMBER' }}</h1>
+      <p class="account-meta">{{ customer.email }} • Member since {{ customer.created_at | date: "%B %Y" }}</p>
+    </div>
+    <div class="account-header__actions">
+      <a href="{{ routes.account_logout_url }}" class="btn btn--outline btn--sm">LOG OUT</a>
+    </div>
+  </header>
+
+  <!-- Account Grid Layout -->
+  <div class="account-grid">
+    <!-- Order History Section -->
+    <div class="account-orders-card">
+      <div class="card-header">
+        <h2 class="card-title">ORDER ARCHIVE</h2>
+        <span class="card-count">{{ customer.orders.size }} {{ customer.orders.size | pluralize: 'Drop', 'Drops' }}</span>
+      </div>
+
+      {%- paginate customer.orders by 10 -%}
+        {%- if customer.orders.size > 0 -%}
+          <div class="orders-table-wrapper">
+            <table class="orders-table" role="table">
+              <caption class="visually-hidden">Your ViMi Order History</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Order</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Payment</th>
+                  <th scope="col">Fulfillment</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr>
+                    <td data-label="Order" class="order-number font-mono">
+                      <a href="{{ order.customer_url }}">{{ order.name }}</a>
+                    </td>
+                    <td data-label="Date">
+                      {{ order.created_at | date: "%d %b %Y" }}
+                    </td>
+                    <td data-label="Payment">
+                      <span class="status-badge status-badge--{{ order.financial_status }}">
+                        {{ order.financial_status_label }}
+                      </span>
+                    </td>
+                    <td data-label="Fulfillment">
+                      <span class="status-badge status-badge--{{ order.fulfillment_status }}">
+                        {{ order.fulfillment_status_label }}
+                      </span>
+                    </td>
+                    <td data-label="Total" class="order-total font-mono">
+                      {{ order.total_net_amount | default: order.total_price | money_with_currency }}
+                    </td>
+                    <td data-label="Details">
+                      <a href="{{ order.customer_url }}" class="btn-link">View Order →</a>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <div class="pagination">
+              {{ paginate | default_pagination }}
+            </div>
+          {%- endif -%}
+
+        {%- else -%}
+          <div class="account-empty-state">
+            <div class="empty-icon">📦</div>
+            <h3>NO ARCHIVE ORDERS YET</h3>
+            <p>You haven't claimed any limited 450 GSM drops yet. Explore the current catalog before it sells out.</p>
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">
+              <span>EXPLORE ALL HOODIES</span>
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+
+    <!-- Right Sidebar (Address & Perks) -->
+    <div class="account-sidebar">
+      <!-- Default Address Card -->
+      <div class="account-card">
+        <div class="card-header">
+          <h3 class="card-title">DEFAULT SHIPPING ADDRESS</h3>
+        </div>
+        <div class="card-body">
+          {%- if customer.default_address -%}
+            <div class="address-details">
+              <p class="address-name font-bold">{{ customer.default_address.name }}</p>
+              {%- if customer.default_address.company != blank -%}
+                <p>{{ customer.default_address.company }}</p>
+              {%- endif -%}
+              <p>{{ customer.default_address.street }}</p>
+              <p>{{ customer.default_address.city }}, {{ customer.default_address.province_code }} {{ customer.default_address.zip }}</p>
+              <p>{{ customer.default_address.country }}</p>
+              {%- if customer.default_address.phone != blank -%}
+                <p class="address-phone font-mono">{{ customer.default_address.phone }}</p>
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            <p class="text-muted">No default shipping address saved yet.</p>
+          {%- endif -%}
+
+          <div class="card-footer-action">
+            <a href="{{ routes.account_addresses_url }}" class="btn btn--outline btn--full btn--sm">
+              MANAGE ADDRESSES ({{ customer.addresses_count }})
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIP Syndicate Perks Card -->
+      <div class="account-card syndicate-card">
+        <div class="card-header">
+          <h3 class="card-title">⚡ SYNDICATE PRIVILEGES</h3>
+        </div>
+        <div class="card-body">
+          <ul class="syndicate-perks-list">
+            <li>
+              <strong>Priority Drop Access</strong>
+              <span>Instant access to new 450 GSM colorways 15 minutes before public drop.</span>
+            </li>
+            <li>
+              <strong>Express Doorstep Dispatch</strong>
+              <span>Guaranteed priority courier dispatch across India within 24 hours.</span>
+            </li>
+            <li>
+              <strong>Hassle-Free 7-Day Exchange</strong>
+              <span>Zero-questions-asked size replacement at your doorstep.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
